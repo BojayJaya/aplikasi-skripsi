@@ -1,0 +1,2 @@
+# aplikasi-skripsi
+bismillah skripsi
