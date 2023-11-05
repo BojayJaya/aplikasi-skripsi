@@ -76,6 +76,11 @@ with st.container():
         Di bawah ini adalah contoh dari dataset sebelum dan setelah preprocessing:
         """, unsafe_allow_html=True)
 
+        def load_dataset():
+            # Gantilah 'nama_file.csv' dengan nama file CSV yang berisi dataset teks
+            df = pd.read_csv('ulasan_atkp_pn.csv')
+            return df
+
         # Preprocessing function
         def preprocess_text(text):
             # Case Folding
@@ -106,7 +111,7 @@ with st.container():
         st.write("### Dataset Sebelum Preprocessing")
 
         # Load the dataset
-        df = pd.read_csv("dataprep.csv")
+        df = load_dataset()
 
         # Display the dataset before preprocessing
         st.write(df)
@@ -270,4 +275,4 @@ with st.container():
 
     elif selected == "Tentang Kami":
         st.write("#####  Skripsi") 
-        st.write("1. Hambali Fitrianto (200411100074)")
+        st.write("Hambali Fitrianto (200411100074)")
