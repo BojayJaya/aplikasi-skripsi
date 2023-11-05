@@ -4,6 +4,7 @@ import pandas as pd
 import regex as re
 import json
 import nltk
+import string
 nltk.download('stopwords')
 nltk.download('punkt')
 # from nltk.tokenize import sent_tokenize, word_tokenize
@@ -94,7 +95,8 @@ with st.container():
             text = re.sub(r"\d+", "", text)
 
             # Hapus tanda baca
-            text = text.translate(str.maketrans("", "", string.punctuation))
+            translator = str.maketrans('', '', string.punctuation)
+            text = text.translate(translator)
 
             # Hapus whitespace
             text = text.strip()
