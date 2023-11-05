@@ -56,7 +56,7 @@ with st.container():
 
     if selected == "Home":
         st.write("""<h3 style = "text-align: center;">
-        <img src="https://storage.nu.or.id/storage/post/16_9/mid/1605569441.JPG" width="500" height="300">
+        <img src="https://cf.shopee.co.id/file/224536e9ed4a0e07d2981cc0789350ea" width="500" height="300">
         </h3>""",unsafe_allow_html=True)
 
     elif selected == "Dataset":
