@@ -35,9 +35,10 @@ st.set_page_config(
     }
 )
 st.write("""
-<center><h2 style = "text-align: justify;">ANALISIS SENTIMEN WISATA API TAK KUNJUNG PADAM MENGGUNAKAN METODE NAIVE BAYES MELALUI ULASAN GOOGLE REVIEW PADA GOOGLE MAPS</h2></center>
+<center><h2 style = "text-align: justify;">ANALISIS SENTIMEN JAMU MADURA MENGGUNAKAN ALGORITMA SUPPORT VECTOR MACHINE DAN QUERY EXPANSION RANKING</h2></center>
 """,unsafe_allow_html=True)
-#st.write("### Dosen Pengampu: Dr. Cucun Very Angkoso, S.T., MT.",unsafe_allow_html=True)
+#st.write("### Dosen Pembimbing I: .",unsafe_allow_html=True)
+#st.write("### Dosen Pembimbing II: .",unsafe_allow_html=True)
 
 with st.container():
     with st.sidebar:
@@ -65,12 +66,11 @@ with st.container():
         st.write(""" <p style = "text-align: justify;">Preprocessing data merupakan proses dalam mengganti teks tidak teratur supaya teratur yang nantinya dapat membantu pada proses pengolahan data.</p>""",unsafe_allow_html=True)
         st.write(""" 
         <ol>
-            <li>Case folding merupakan tahap untuk mengganti keseluruhan kata kapital pada dataset agar berubah menjadi tidak kapital.</li>
-            <li>Cleansing yaitu merupakan proses untuk menghilangkan semua simbol, angka, ataupun emoticon yang terdapat didalam dataset</li>
-            <li>Slangword Removing yaitu satu proses yang dilakukan untuk mendeteksi dan menghilangkan kata-kata yang tidak baku di dalam dataset</li>
-            <li>Tokenization yaitu proses untuk memisahkan suatu kalimat menjadi beberapa kata untuk memudahkan proses stopword.</li>
-            <li>Stopword Removing yaitu proses untuk menghilangkan semua kata hubung yang terdapat pada dataset.</li>
-            <li>Steaming yaitu proses yang digunakan untuk menghilangkan semua kata imbuhan dan merubahnya menjadi kata dasar.</li>
+            <li>Case Folding</li>
+            <li>Punctuation Removal</li>
+            <li>Tokenizing</li>
+            <li>Stopword Removal</li>
+            <li>Stemming</li>
         </ol> 
         """,unsafe_allow_html=True)
         st.write("#### Dataset")
