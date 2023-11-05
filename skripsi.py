@@ -59,70 +59,70 @@ with st.container():
         <img src="https://cf.shopee.co.id/file/224536e9ed4a0e07d2981cc0789350ea" width="500" height="300">
         </h3>""",unsafe_allow_html=True)
 
-elif selected == "Dataset":
-    st.write("#### Deskripsi Dataset")
-    st.write(""" <p style = "text-align: justify;">Dataset ini berisi ulasan masyarakat terhadap jamu Madura. Selanjutnya, data ulasan ini akan diklasifikasikan ke dalam dua kategori sentimen yaitu positif dan negatif, kemudian dilakukan penerapan algoritma Support Vector Machine dan Seleksi Fitur Query Expansion Ranking untuk mengetahui nilai akurasinya.</p>""", unsafe_allow_html=True)
-    st.write("#### Preprocessing Dataset")
-    st.write(""" <p style = "text-align: justify;">Preprocessing data merupakan proses untuk mengubah teks yang tidak teratur menjadi lebih terstruktur, yang nantinya akan membantu dalam pengolahan data.</p>""", unsafe_allow_html=True)
-    st.write("#### Tahapan Preprocessing Dataset")
-    st.write(""" 
-    Tahapan preprocessing data melibatkan lima langkah sebagai berikut:
-    1. **Case Folding**: Mengubah semua huruf menjadi huruf kecil.
-    2. **Punctuation Removal**: Menghapus tanda baca dari teks.
-    3. **Tokenizing**: Membagi teks menjadi kata-kata.
-    4. **Stopword Removal**: Menghapus kata-kata umum yang tidak memberikan informasi penting.
-    5. **Stemming**: Mengubah kata-kata menjadi bentuk dasarnya.
+    elif selected == "Dataset":
+        st.write("#### Deskripsi Dataset")
+        st.write(""" <p style = "text-align: justify;">Dataset ini berisi ulasan masyarakat terhadap jamu Madura. Selanjutnya, data ulasan ini akan diklasifikasikan ke dalam dua kategori sentimen yaitu positif dan negatif, kemudian dilakukan penerapan algoritma Support Vector Machine dan Seleksi Fitur Query Expansion Ranking untuk mengetahui nilai akurasinya.</p>""", unsafe_allow_html=True)
+        st.write("#### Preprocessing Dataset")
+        st.write(""" <p style = "text-align: justify;">Preprocessing data merupakan proses untuk mengubah teks yang tidak teratur menjadi lebih terstruktur, yang nantinya akan membantu dalam pengolahan data.</p>""", unsafe_allow_html=True)
+        st.write("#### Tahapan Preprocessing Dataset")
+        st.write(""" 
+        Tahapan preprocessing data melibatkan lima langkah sebagai berikut:
+        1. **Case Folding**: Mengubah semua huruf menjadi huruf kecil.
+        2. **Punctuation Removal**: Menghapus tanda baca dari teks.
+        3. **Tokenizing**: Membagi teks menjadi kata-kata.
+        4. **Stopword Removal**: Menghapus kata-kata umum yang tidak memberikan informasi penting.
+        5. **Stemming**: Mengubah kata-kata menjadi bentuk dasarnya.
 
-    Di bawah ini adalah contoh dari dataset sebelum dan setelah preprocessing:
-    """, unsafe_allow_html=True)
+        Di bawah ini adalah contoh dari dataset sebelum dan setelah preprocessing:
+        """, unsafe_allow_html=True)
 
-    # Load the dataset
-    @st.cache
-    def load_dataset():
-        # Gantilah 'nama_file.csv' dengan nama file CSV yang berisi dataset teks
-        df = pd.read_csv('ulasan_atkp_pn.csv')
-        return df
+        # Load the dataset
+        @st.cache
+        def load_dataset():
+            # Gantilah 'nama_file.csv' dengan nama file CSV yang berisi dataset teks
+            df = pd.read_csv('ulasan_atkp_pn.csv')
+            return df
 
-    # Preprocessing function
-    def preprocess_text(text):
-        # Case Folding
-        text = text.lower()
+        # Preprocessing function
+        def preprocess_text(text):
+            # Case Folding
+            text = text.lower()
 
-        # Punctuation Removal
-        text = re.sub(r'[^\w\s]', '', text)
+            # Punctuation Removal
+            text = re.sub(r'[^\w\s]', '', text)
 
-        # Tokenization
-        tokenizer = RegexpTokenizer(r'\w+')
-        tokens = tokenizer.tokenize(text)
+            # Tokenization
+            tokenizer = RegexpTokenizer(r'\w+')
+            tokens = tokenizer.tokenize(text)
 
-        # Stopword Removal
-        stop_words = set(stopwords.words('indonesian'))
-        filtered_tokens = [word for word in tokens if word not in stop_words]
+            # Stopword Removal
+            stop_words = set(stopwords.words('indonesian'))
+            filtered_tokens = [word for word in tokens if word not in stop_words]
 
-        # Stemming
-        factory = StemmerFactory()
-        stemmer = factory.create_stemmer()
-        stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
+            # Stemming
+            factory = StemmerFactory()
+            stemmer = factory.create_stemmer()
+            stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
 
-        # Join tokens back into text
-        preprocessed_text = ' '.join(stemmed_tokens)
+            # Join tokens back into text
+            preprocessed_text = ' '.join(stemmed_tokens)
 
-        return preprocessed_text
+            return preprocessed_text
 
-    st.title("Preprocessing Dataset Teks")
-    st.write("### Dataset Sebelum Preprocessing")
+        st.title("Preprocessing Dataset Teks")
+        st.write("### Dataset Sebelum Preprocessing")
 
-    # Load the dataset
-    df = load_dataset()
+        # Load the dataset
+        df = load_dataset()
 
-    # Display the dataset before preprocessing
-    st.write(df)
+        # Display the dataset before preprocessing
+        st.write(df)
 
-    # Preprocess the dataset
-    df['preprocessed_text'] = df['text'].apply(preprocess_text)
+        # Preprocess the dataset
+        df['preprocessed_text'] = df['text'].apply(preprocess_text)
 
-    st.write("### Dataset Setelah Preprocessing")
-    st.write(df[['text', 'preprocessed_text']])
+        st.write("### Dataset Setelah Preprocessing")
+        st.write(df[['text', 'preprocessed_text']])
 
     elif selected == "Implementation":
         #Getting input from user
