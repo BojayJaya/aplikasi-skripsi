@@ -43,7 +43,7 @@ st.write("""
 with st.container():
     with st.sidebar:
         selected = option_menu(
-        st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
+        st.write("""<h3 style = "text-align: center;"><img src="https://cdn-icons-png.flaticon.com/512/1998/1998664.png" width="120" height="120"></h3>""",unsafe_allow_html=True), 
         ["Home","Dataset", "Implementation", "Tentang Kami"], 
             icons=['house', 'bar-chart', 'check2-square', 'person'], menu_icon="cast", default_index=0,
             styles={
@@ -56,27 +56,30 @@ with st.container():
 
     if selected == "Home":
         st.write("""<h3 style = "text-align: center;">
-        <img src="https://cf.shopee.co.id/file/224536e9ed4a0e07d2981cc0789350ea" width="500" height="300">
+        <img src="https://storage.nu.or.id/storage/post/16_9/mid/1605569441.JPG" width="500" height="300">
         </h3>""",unsafe_allow_html=True)
 
     elif selected == "Dataset":
         st.write("#### Deskripsi Dataset")
-        st.write(""" <p style = "text-align: justify;">dataset tentang ulasan masyarakat terhadap pariwisata api tak kunjung padam dari ulasan google maps. Selanjutnya data ulasan tersebut akan diklasifikasikan ke dalam dua kategori sentimen yaitu negatif dan positif kemudian dilakukan penerapan algoritma Multinomial Naive Bayes untuk mengetahui nilai akurasinya.</p>""",unsafe_allow_html=True)
+        st.write(""" <p style = "text-align: justify;">dataset ini berisi tentang ulasan masyarakat terhadap jamu madura. Selanjutnya data ulasan tersebut akan diklasifikasikan ke dalam dua kategori sentimen yaitu positif dan negatif kemudian dilakukan penerapan algoritma Support Vector Machine dan Seleksi Fitur Query Expansion Ranking untuk mengetahui nilai akurasinya.</p>""",unsafe_allow_html=True)
         st.write("#### Preprocessing Dataset")
         st.write(""" <p style = "text-align: justify;">Preprocessing data merupakan proses dalam mengganti teks tidak teratur supaya teratur yang nantinya dapat membantu pada proses pengolahan data.</p>""",unsafe_allow_html=True)
+        st.write("#### Tahapan Preprocessing Dataset")
         st.write(""" 
-        <ol>
-            <li>Case Folding</li>
-            <li>Punctuation Removal</li>
-            <li>Tokenizing</li>
-            <li>Stopword Removal</li>
-            <li>Stemming</li>
-        </ol> 
-        """,unsafe_allow_html=True)
-        st.write("#### Dataset")
+        Tahapan preprocessing data melibatkan lima langkah sebagai berikut:
+        1. **Case Folding**: Mengubah semua huruf menjadi huruf kecil.
+        2. **Punctuation Removal**: Menghapus tanda baca dari teks.
+        3. **Tokenizing**: Membagi teks menjadi kata-kata.
+        4. **Stopword Removal**: Menghapus kata-kata umum yang tidak memberikan informasi penting.
+        5. **Stemming**: Mengubah kata-kata menjadi bentuk dasarnya.
+
+        Di bawah ini adalah contoh dari dataset setelah preprocessing:
+        """, unsafe_allow_html=True)
+        st.write("#### Dataset Setelah Preprocessing")
         df = pd.read_csv("dataprep.csv")
 #         df = df.drop(columns=['nama','sentiment','score'])
         st.write(df)
+
     elif selected == "Implementation":
         #Getting input from user
         word = st.text_area('Masukkan kata yang akan di analisa :')
