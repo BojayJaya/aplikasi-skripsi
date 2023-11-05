@@ -131,8 +131,12 @@ with st.container():
 
             return preprocessed_text
 
+        st.title("Preprocessing Dataset Teks")
+        st.write("### Dataset Sebelum Preprocessing")
         # Load the dataset
         df = load_dataset()
+        # Display the dataset before preprocessing
+        st.write(df)
 
         # Apply the preprocessing function to the 'ulasan' column
         df['preprocessed_text'] = df['ulasan'].apply(preprocess_text)
