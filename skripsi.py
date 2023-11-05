@@ -112,10 +112,10 @@ with st.container():
         st.write(df)
 
         # Preprocess the dataset
-        df['preprocessed_text'] = df['text'].apply(preprocess_text)
+        df['preprocessed_text'] = df['ulasan'].apply(preprocess_text)
 
         st.write("### Dataset Setelah Preprocessing")
-        st.write(df[['text', 'preprocessed_text']])
+        st.write(df[['ulasan', 'preprocessed_text']])
 
     elif selected == "Implementation":
         #Getting input from user
