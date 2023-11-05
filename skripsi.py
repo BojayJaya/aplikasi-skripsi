@@ -106,7 +106,7 @@ with st.container():
         st.write("### Dataset Sebelum Preprocessing")
 
         # Load the dataset
-        df = pd.read_csv("ulasan_atkp_pn.csv")
+        df = pd.read_csv("dataset.csv")
 
         # Display the dataset before preprocessing
         st.write(df)
