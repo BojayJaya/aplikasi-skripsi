@@ -77,73 +77,97 @@ with st.container():
         Di bawah ini adalah contoh dari dataset sebelum dan setelah preprocessing:
         """, unsafe_allow_html=True)
 
+        st.title("Preprocessing Dataset Teks")
+
+        # Load the dataset
         @st.cache
         def load_dataset():
-            # Gantilah 'nama_file.csv' dengan nama file CSV yang berisi dataset teks
+            # Gantilah 'dataset.csv' dengan nama file CSV yang berisi dataset teks
             df = pd.read_csv('dataset.csv')
             return df
 
         # Preprocessing function
         def preprocess_text(text):
             # Case Folding
+            st.write("### Hasil setelah Case Folding:")
             text = text.lower()
+            st.write(text)
 
             # Punctuation Removal
+            st.write("### Hasil setelah Punctuation Removal:")
             text = re.sub(r'[^\w\s]', '', text)
+            st.write(text)
 
             # Hapus tweet khusus
+            st.write("### Hasil setelah Hapus Tweet Khusus:")
             text = text.replace('\\t', " ").replace('\\n', " ").replace('\\u', " ").replace('\\', "")
             text = text.encode('ascii', 'replace').decode('ascii')
             text = ' '.join(re.sub("([@#][A-Za-z0-9]+)|(\w+:\/\/\S+)", " ", text).split())
             text = text.replace("http://", " ").replace("https://", " ")
+            st.write(text)
 
             # Hapus nomor
+            st.write("### Hasil setelah Hapus Nomor:")
             text = re.sub(r"\d+", "", text)
+            st.write(text)
 
             # Hapus tanda baca
+            st.write("### Hasil setelah Hapus Tanda Baca:")
             translator = str.maketrans('', '', string.punctuation)
             text = text.translate(translator)
+            st.write(text)
 
             # Hapus whitespace
+            st.write("### Hasil setelah Hapus Whitespace:")
             text = text.strip()
             text = re.sub('\s+', ' ', text)
+            st.write(text)
 
             # Hapus karakter tunggal
+            st.write("### Hasil setelah Hapus Karakter Tunggal:")
             text = re.sub(r"\b[a-zA-Z]\b", "", text)
+            st.write(text)
 
             # Tokenisasi
+            st.write("### Hasil Tokenisasi:")
             tokenizer = RegexpTokenizer(r'\w+')
             tokens = tokenizer.tokenize(text)
+            st.write(tokens)
 
             # Stopword Removal
+            st.write("### Hasil Setelah Stopword Removal:")
             stop_words = set(stopwords.words('indonesian'))
             filtered_tokens = [word for word in tokens if word not in stop_words]
+            st.write(filtered_tokens)
 
             # Stemming
+            st.write("### Hasil Setelah Stemming:")
             factory = StemmerFactory()
             stemmer = factory.create_stemmer()
             stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
+            st.write(stemmed_tokens)
 
             # Gabungkan token kembali ke dalam teks
             preprocessed_text = ' '.join(stemmed_tokens)
+            st.write("### Hasil Akhir Setelah Preprocessing:")
+            st.write(preprocessed_text)
 
             return preprocessed_text
-
-
-        st.title("Preprocessing Dataset Teks")
-        st.write("### Dataset Sebelum Preprocessing")
 
         # Load the dataset
         df = load_dataset()
 
         # Display the dataset before preprocessing
+        st.write("### Dataset Sebelum Preprocessing")
         st.write(df)
 
         # Preprocess the dataset
         df['preprocessed_text'] = df['ulasan'].apply(preprocess_text)
 
+        # Display the dataset after preprocessing
         st.write("### Dataset Setelah Preprocessing")
         st.write(df[['ulasan', 'preprocessed_text']])
+
 
     elif selected == "Implementation":
         #Getting input from user
