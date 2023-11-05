@@ -96,33 +96,23 @@ with st.container():
             # Punctuation Removal
             st.write("### Hasil setelah Punctuation Removal:")
             text = re.sub(r'[^\w\s]', '', text)
-            st.write(text)
-
             # Hapus tweet khusus
             st.write("### Hasil setelah Hapus Tweet Khusus:")
             text = text.replace('\\t', " ").replace('\\n', " ").replace('\\u', " ").replace('\\', "")
             text = text.encode('ascii', 'replace').decode('ascii')
             text = ' '.join(re.sub("([@#][A-Za-z0-9]+)|(\w+:\/\/\S+)", " ", text).split())
             text = text.replace("http://", " ").replace("https://", " ")
-            st.write(text)
-
             # Hapus nomor
             st.write("### Hasil setelah Hapus Nomor:")
             text = re.sub(r"\d+", "", text)
-            st.write(text)
-
             # Hapus tanda baca
             st.write("### Hasil setelah Hapus Tanda Baca:")
             translator = str.maketrans('', '', string.punctuation)
             text = text.translate(translator)
-            st.write(text)
-
             # Hapus whitespace
             st.write("### Hasil setelah Hapus Whitespace:")
             text = text.strip()
             text = re.sub('\s+', ' ', text)
-            st.write(text)
-
             # Hapus karakter tunggal
             st.write("### Hasil setelah Hapus Karakter Tunggal:")
             text = re.sub(r"\b[a-zA-Z]\b", "", text)
