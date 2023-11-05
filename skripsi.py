@@ -43,7 +43,7 @@ st.write("""
 with st.container():
     with st.sidebar:
         selected = option_menu(
-        st.write("""<h3 style = "text-align: center;"><img src="https://cdn-icons-png.flaticon.com/512/1998/1998664.png" width="120" height="120"></h3>""",unsafe_allow_html=True), 
+        st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
         ["Home","Dataset", "Implementation", "Tentang Kami"], 
             icons=['house', 'bar-chart', 'check2-square', 'person'], menu_icon="cast", default_index=0,
             styles={
@@ -56,7 +56,7 @@ with st.container():
 
     if selected == "Home":
         st.write("""<h3 style = "text-align: center;">
-        <img src="https://storage.nu.or.id/storage/post/16_9/mid/1605569441.JPG" width="500" height="300">
+        <img src="https://cf.shopee.co.id/file/224536e9ed4a0e07d2981cc0789350ea" width="500" height="300">
         </h3>""",unsafe_allow_html=True)
 
     elif selected == "Dataset":
