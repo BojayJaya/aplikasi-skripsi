@@ -84,7 +84,26 @@ with st.container():
             # Punctuation Removal
             text = re.sub(r'[^\w\s]', '', text)
 
-            # Tokenization
+            # Hapus tweet khusus
+            text = text.replace('\\t', " ").replace('\\n', " ").replace('\\u', " ").replace('\\', "")
+            text = text.encode('ascii', 'replace').decode('ascii')
+            text = ' '.join(re.sub("([@#][A-Za-z0-9]+)|(\w+:\/\/\S+)", " ", text).split())
+            text = text.replace("http://", " ").replace("https://", " ")
+
+            # Hapus nomor
+            text = re.sub(r"\d+", "", text)
+
+            # Hapus tanda baca
+            text = text.translate(str.maketrans("", "", string.punctuation))
+
+            # Hapus whitespace
+            text = text.strip()
+            text = re.sub('\s+', ' ', text)
+
+            # Hapus karakter tunggal
+            text = re.sub(r"\b[a-zA-Z]\b", "", text)
+
+            # Tokenisasi
             tokenizer = RegexpTokenizer(r'\w+')
             tokens = tokenizer.tokenize(text)
 
@@ -97,10 +116,11 @@ with st.container():
             stemmer = factory.create_stemmer()
             stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
 
-            # Join tokens back into text
+            # Gabungkan token kembali ke dalam teks
             preprocessed_text = ' '.join(stemmed_tokens)
 
             return preprocessed_text
+
 
         st.title("Preprocessing Dataset Teks")
         st.write("### Dataset Sebelum Preprocessing")
