@@ -146,7 +146,7 @@ with st.container():
             X_train, X_test, y_train, y_test = train_test_split(tfidf_wm, sentimen, test_size=0.1, random_state=1)
 
             # model
-            # with open('model.pkl', 'rb') as file:
+            # with open('modelpola.pkl', 'rb') as file:
             #     loaded_model = pickle.load(file)
             # clf = loaded_model.fit(X_train,y_train)
             # y_pred=clf.predict(X_test)
@@ -229,7 +229,5 @@ with st.container():
             st.pyplot()
 
     elif selected == "Tentang Kami":
-        st.write("##### Mata Kuliah = Pengenalan Pola - B") 
-        st.write('##### Kelompok :')
+        st.write("#####  Skripsi") 
         st.write("1. Hambali Fitrianto (200411100074)")
-        st.write("2. Choirinnisa' Fitria (200411100149)")
