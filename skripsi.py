@@ -89,11 +89,11 @@ with st.container():
 
                 list_stopwords = stopwords.words('indonesian')
                 list_stopwords.extend(["yg", "dg", "rt", "dgn", "ny", "d", 'klo',
-                                    'kalo', 'amp', 'biar', 'bikin', 'bilang',
-                                    'gak', 'ga', 'krn', 'nya', 'nih', 'sih',
-                                    'si', 'tau', 'tdk', 'tuh', 'utk', 'ya',
-                                    'jd', 'jgn', 'sdh', 'aja', 'n', 't', 'e',
-                                    'nyg', 'hehe', 'pen', 'u', 'nan', 'loh', 'rt',
+                                    'kalo', 'amp', 'biar', 'bikin', 'bilang', 'td', 't', 'lg', 'bgt', 'ni',
+                                    'gak','gk', 'ga', 'krn', 'nya', 'nih', 'sih', 'in', 'ne', 'cm',
+                                    'si', 'tau', 'tdk', 'tuh', 'utk', 'ya', 'tq', 'tp', 'tpi', 'm',
+                                    'jd', 'jg', 'jgn', 'sdh', 'aja', 'a', 'n', 't', 'e', 'p', 'x', 'y', 'g','da',
+                                    'nyg', 'hehe', 'pen', 'u', 'b', 'nan', 'loh', 'rt',
                                     '&amp', 'yah'])
                 txt_stopword = pd.read_csv("https://raw.githubusercontent.com/masdevid/ID-Stopwords/master/id.stopwords.02.01.2016.txt",
                                         names=["stopwords"], header=None)
@@ -111,24 +111,18 @@ with st.container():
             ulasan_dataset = Dt_Ujm['ulasan']
             sentimen = Dt_Ujm['label']
 
-            # Text preprocessing
             ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
 
-            # TF-IDF Vectorization
             tfidfvectorizer = TfidfVectorizer(analyzer='word')
             tfidf_wm = tfidfvectorizer.fit_transform(ulasan_dataset_preprocessed)
 
-            # Split data into train and test sets
             X_train, X_test, y_train, y_test = train_test_split(tfidf_wm, sentimen, test_size=0.1, random_state=1)
 
-            # Train Support Vector Machine (SVM) classifier
             svm_clf = SVC(kernel='linear', C=1.0)
             svm_clf.fit(X_train, y_train)
 
-            # Predict on the test set
             y_pred = svm_clf.predict(X_test)
 
-            # Streamlit implementation
             st.subheader('Text Analysis with SVM')
             preprocessed_text = preprocessing_data(text)
             v_data = tfidfvectorizer.transform([preprocessed_text])
