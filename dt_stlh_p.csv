@@ -1,4 +1,4 @@
-ulasan_st,label
+ulasan,label
 "['habis', 'bungkus', 'reaksi']",negatif
 "['efektif', 'ngelancarin', 'ngurangin', 'nyeri', 'haid', 'ngebersihin', 'sisa', 'haid', 'susul']",positif
 "['pengaruh', 'habis', 'minum', 'tetep', 'haid']",negatif
