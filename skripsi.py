@@ -65,8 +65,6 @@ with st.container():
         Di bawah ini adalah contoh dari dataset sebelum dan setelah preprocessing:
         """, unsafe_allow_html=True)
 
-        st.title("Preprocessing Dataset Teks")
-
         st.write("### Dataset Sebelum Preprocessing")
         dt_sblm_p = pd.read_csv("dt_sblm_p.csv")
         st.write(dt_sblm_p)
