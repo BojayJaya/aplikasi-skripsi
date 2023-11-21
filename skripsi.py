@@ -49,11 +49,11 @@ with st.container():
         </h3>""",unsafe_allow_html=True)
 
     elif selected == "Dataset":
-        st.write("#### Deskripsi Dataset")
+        st.write("#### Deskripsi Dataset :")
         st.write(""" <p style = "text-align: justify;">Dataset ini berisi ulasan masyarakat terhadap jamu Madura. Selanjutnya, data ulasan ini akan diklasifikasikan ke dalam dua kategori sentimen yaitu positif dan negatif, kemudian dilakukan penerapan algoritma Support Vector Machine dan Seleksi Fitur Query Expansion Ranking untuk mengetahui nilai akurasinya.</p>""", unsafe_allow_html=True)
-        st.write("#### Preprocessing Dataset")
+        st.write("#### Preprocessing Dataset :")
         st.write(""" <p style = "text-align: justify;">Preprocessing data merupakan proses untuk mengubah teks yang tidak teratur menjadi lebih terstruktur, yang nantinya akan membantu dalam pengolahan data.</p>""", unsafe_allow_html=True)
-        st.write("#### Tahapan Preprocessing Dataset")
+        st.write("#### Tahapan Preprocessing Dataset :")
         st.write(""" 
         Tahapan preprocessing data melibatkan lima langkah sebagai berikut:
         1. **Case Folding**: Mengubah semua huruf menjadi huruf kecil.
@@ -65,11 +65,11 @@ with st.container():
         Di bawah ini adalah contoh dari dataset sebelum dan setelah preprocessing:
         """, unsafe_allow_html=True)
 
-        st.write("### Dataset Sebelum Preprocessing")
+        st.write("#### Dataset Sebelum Preprocessing :")
         dt_sblm_p = pd.read_csv("dt_sblm_p.csv")
         st.write(dt_sblm_p)
 
-        st.write("#### Dataset Setelah Preprocessing")
+        st.write("##### Dataset Setelah Preprocessing :")
         dt_stlh_p = pd.read_csv("dt_stlh_p.csv")
         st.write(dt_stlh_p)
         
