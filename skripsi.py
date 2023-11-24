@@ -4,7 +4,6 @@ import pandas as pd
 import regex as re
 import nltk
 nltk.download('punkt')
-nltk.download('stopwords')
 from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.model_selection import train_test_split
