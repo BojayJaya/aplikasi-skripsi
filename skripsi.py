@@ -1,12 +1,14 @@
 from streamlit_option_menu import option_menu
 import streamlit as st
 import pandas as pd
-import regex as re
+import  re
+import string
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from nltk.stem import PorterStemmer
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 import pickle
@@ -81,36 +83,34 @@ with st.container():
 
         if submit:
             def preprocessing_data(text):
+                # Case folding
                 text = text.lower()
                 text = re.sub("\n", " ", text)
                 text = re.sub('https?://\S+|www\.\S+', '', text)
                 text = re.sub(r'[^\x00-\x7F]+', '', text)
                 text = re.sub(r'\d+', '', text)
 
-                tokens = nltk.word_tokenize(text)
+                # Punctual removal
+                text = text.translate(str.maketrans("", "", string.punctuation))
 
-                list_stopwords = stopwords.words('indonesian')
-                list_stopwords.extend(["yg", "dg", "rt", "dgn", "ny", "d", 'klo',
-                                    'kalo', 'amp', 'biar', 'bikin', 'bilang', 'td', 't', 'lg', 'bgt', 'ni',
-                                    'gak','gk', 'ga', 'krn', 'nya', 'nih', 'sih', 'in', 'ne', 'cm',
-                                    'si', 'tau', 'tdk', 'tuh', 'utk', 'ya', 'tq', 'tp', 'tpi', 'm',
-                                    'jd', 'jg', 'jgn', 'sdh', 'aja', 'a', 'n', 't', 'e', 'p', 'x', 'y', 'g','da',
-                                    'nyg', 'hehe', 'pen', 'u', 'b', 'nan', 'loh', 'rt',
-                                    '&amp', 'yah'])
-                txt_stopword = pd.read_csv("https://raw.githubusercontent.com/masdevid/ID-Stopwords/master/id.stopwords.02.01.2016.txt",
-                                        names=["stopwords"], header=None)
-                list_stopwords.extend(txt_stopword["stopwords"][0].split(' '))
-                list_stopwords = set(list_stopwords)
-                tokens = [word for word in tokens if word not in list_stopwords]
+                # Tokenization
+                text = nltk.word_tokenize(text)
 
-                factory = StemmerFactory()
-                stemmer = factory.create_stemmer()
-                tokens = [stemmer.stem(term) for term in tokens]
+                # Removing stopwords
+                stop_words = set(stopwords.words('indonesian'))
+                factory = StopWordRemoverFactory()
+                stopword_remover = factory.create_stop_word_remover()
+                text = [token for token in text if token not in stop_words]
+                text = [stopword_remover.remove(token) for token in text]
 
-                return ' '.join(tokens)
+                # Stemming
+                stemmer = PorterStemmer()
+                text = [stemmer.stem(token) for token in text]
+
+                return text
 
             Dt_Ujm = pd.read_csv("dt_stlh_p.csv")
-            ulasan_dataset = Dt_Ujm['ulasan']
+            ulasan_dataset = Dt_Ujm['ulasan_st']
             sentimen = Dt_Ujm['label']
 
             ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
