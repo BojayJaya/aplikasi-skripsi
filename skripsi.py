@@ -6,8 +6,8 @@ import nltk
 from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
+import pickle5 as pickle
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -113,19 +113,20 @@ with st.container():
 
             ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
 
-            tfidfvectorizer = TfidfVectorizer(analyzer='word')
-            tfidf_wm = tfidfvectorizer.fit_transform(ulasan_dataset_preprocessed)
+            with open('tf_idf_baru.pkl', 'rb') as file:
+                loaded_data_tfid = pickle.load(file)
+            tf_idf_baru = loaded_data_tfid.fit_transform(ulasan_dataset_preprocessed)
 
-            X_train, X_test, y_train, y_test = train_test_split(tfidf_wm, sentimen, test_size=0.1, random_state=1)
+            X_train, X_test, y_train, y_test = train_test_split(tf_idf_baru, sentimen, test_size=0.1, random_state=42)
 
-            svm_clf = SVC(kernel='linear', C=1.0)
+            svm_clf = SVC(kernel='linear')
             svm_clf.fit(X_train, y_train)
 
             y_pred = svm_clf.predict(X_test)
 
             st.subheader('Text Analysis with SVM')
             preprocessed_text = preprocessing_data(text)
-            v_data = tfidfvectorizer.transform([preprocessed_text])
+            v_data = loaded_data_tfid.transform([preprocessed_text])
             y_preds = svm_clf.predict(v_data)
 
             st.subheader('Prediction:')
