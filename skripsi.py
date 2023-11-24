@@ -127,7 +127,6 @@ with st.container():
 
             y_pred = svm_clf.predict(X_test)
 
-            st.subheader('Text Analysis with SVM')
             preprocessed_text = preprocessing_data(text)
             v_data = loaded_data_tfid.transform([preprocessed_text])
             y_preds = svm_clf.predict(v_data)
