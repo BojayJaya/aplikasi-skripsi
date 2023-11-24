@@ -107,10 +107,11 @@ with st.container():
                 stemmer = PorterStemmer()
                 text = [stemmer.stem(token) for token in text]
 
-                return text
+                # Joining the tokens back into a single string
+                return ' '.join(text)
 
             Dt_Ujm = pd.read_csv("dt_stlh_p.csv")
-            ulasan_dataset = Dt_Ujm['ulasan']
+            ulasan_dataset = Dt_Ujm['ulasan_st']
             sentimen = Dt_Ujm['label']
 
             ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
