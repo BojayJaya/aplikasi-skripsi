@@ -129,11 +129,11 @@ with st.container():
             v_data = loaded_data_tfid.transform([preprocessed_text])
             y_preds = svm_clf.predict(v_data)
 
-            st.subheader('Prediction:')
-            if y_preds[0] == "positive":
-                st.success('Positive')
+            st.subheader('Prediksi:')
+            if y_preds[0] == "positif":
+                st.success('Positif')
             else:
-                st.error('Negative')
+                st.error('Negatif')
 
     elif selected == "Tentang Kami":
         st.write("#####  Skripsi") 
