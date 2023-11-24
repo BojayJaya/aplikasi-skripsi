@@ -3,13 +3,11 @@ import streamlit as st
 import pandas as pd
 import regex as re
 import nltk
-nltk.download('stopwords')
-nltk.download('punkt', quiet=True)
 from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-import pickle5 as pickle
+import pickle
 import warnings
 
 warnings.filterwarnings('ignore')
