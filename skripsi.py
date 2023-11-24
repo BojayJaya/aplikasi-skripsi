@@ -108,7 +108,7 @@ with st.container():
                 return ' '.join(tokens)
 
             Dt_Ujm = pd.read_csv("dt_stlh_p.csv")
-            ulasan_dataset = Dt_Ujm['ulasan']
+            ulasan_dataset = Dt_Ujm['ulasan_st']
             sentimen = Dt_Ujm['label']
 
             ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
