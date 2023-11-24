@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd
 import regex as re
 import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
 from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.model_selection import train_test_split
