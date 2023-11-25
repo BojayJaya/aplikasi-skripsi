@@ -33,14 +33,12 @@ st.write("""
 #st.write("### Dosen Pembimbing I: Dr. Rika Yunitarini, ST., MT.",unsafe_allow_html=True)
 #st.write("### Dosen Pembimbing II: Fifin Ayu Mufarroha, S.Kom., M.Kom.",unsafe_allow_html=True)
 
-
 with st.container():
     with st.sidebar:
         selected = option_menu(
         st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
-        ["Home","Dataset", "Implementation", "Dospem", "Tentang Kami"],
-            icons=['house', 'bar-chart', 'check2-square', 'person', 'info-circle'],
-            menu_icon="cast", default_index=0,
+        ["Home","Dataset", "Implementation", "Tentang Kami"], 
+            icons=['house', 'bar-chart', 'check2-square', 'person'], menu_icon="cast", default_index=0,
             styles={
                 "container": {"padding": "0!important", "background-color": "#412a7a"},
                 "icon": {"color": "white", "font-size": "18px"}, 
@@ -53,16 +51,6 @@ with st.container():
         st.write("""<h3 style = "text-align: center;">
         <img src="https://cf.shopee.co.id/file/224536e9ed4a0e07d2981cc0789350ea" width="500" height="300">
         </h3>""",unsafe_allow_html=True)
-
-    elif selected == "Dospem":
-        st.write("""<h3 style = "text-align: center;">Dosen Pembimbing</h3>""", unsafe_allow_html=True)
-        
-        st.image('path/to/foto_dosen_pembimbing1.jpg', width=120, caption='Dosen Pembimbing I')
-        st.write("### Dr. Rika Yunitarini, ST., MT.")
-        
-        st.image('path/to/foto_dosen_pembimbing2.jpg', width=120, caption='Dosen Pembimbing II')
-        st.write("### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
-
 
     elif selected == "Dataset":
         st.write("#### Deskripsi Dataset :")
