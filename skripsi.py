@@ -61,11 +61,11 @@ with st.container():
         col1, col2 = st.columns(2)
 
         # Menampilkan gambar Dosen Pembimbing I di kolom pertama
-        col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/b4993189a85c9b4c85619718808ffc4a3279de6e/ibu%20rika.png', width=150, caption='Dosen Pembimbing I')
+        col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20rika.png', width=180, caption='Dosen Pembimbing I')
         col1.write("#### Dr. Rika Yunitarini, ST., MT.")
 
         # Menampilkan gambar Dosen Pembimbing II di kolom kedua
-        col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/b4993189a85c9b4c85619718808ffc4a3279de6e/ibu%20fifin.png', width=150, caption='Dosen Pembimbing II')
+        col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=180, caption='Dosen Pembimbing II')
         col2.write("#### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
 
     elif selected == "Dataset":
