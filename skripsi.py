@@ -37,7 +37,7 @@ with st.container():
         selected = option_menu(
             st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
             ["Home", "Dosen Pembimbing", "Dosen Penguji", "Dataset", "Akurasi", "Implementation", "Tentang Kami"],
-            icons=['house', 'person','person', 'bar-chart', 'bar-chart', 'check2-square', 'info-circle'],
+            icons=['house', 'person','person', 'bar-chart', 'area-chart', 'check2-square', 'info-circle'],
             menu_icon="cast", default_index=0,
             styles={
                 "container": {"padding": "0!important", "background-color": "#412a7a"},
