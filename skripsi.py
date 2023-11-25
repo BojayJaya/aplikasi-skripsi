@@ -27,9 +27,15 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
+# st.write("""
+# <center><h2 style = "text-align: justify;">ANALISIS SENTIMEN JAMU MADURA MENGGUNAKAN ALGORITMA SUPPORT VECTOR MACHINE DAN QUERY EXPANSION RANKING</h2></center>
+# """,unsafe_allow_html=True)
+
 st.write("""
-<center><h2 style = "text-align: center;">ANALISIS SENTIMEN JAMU MADURA MENGGUNAKAN ALGORITMA SUPPORT VECTOR MACHINE DAN QUERY EXPANSION RANKING</h2></center>
-""",unsafe_allow_html=True)
+<h2 style="text-align: left;">ANALISIS SENTIMEN JAMU MADURA MENGGUNAKAN ALGORITMA SUPPORT VECTOR MACHINE DAN QUERY EXPANSION RANKING</h2>
+""", unsafe_allow_html=True)
+
+
 
 with st.container():
     with st.sidebar:
