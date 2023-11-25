@@ -75,7 +75,7 @@ with st.container():
         col1, col2, col3 = st.columns(3)
 
         # Menampilkan gambar Dosen Penguji I di kolom pertama
-        col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/143c91b72abdc33c1a86d1df68f305f35e417f69/bapak%20kautsar.png', width=140, caption='Dosen Penguji I')
+        col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/143c91b72abdc33c1a86d1df68f305f35e417f69/bapak%20kautsar.png', width=145, caption='Dosen Penguji I')
         col1.write("#### Moch. Kautsar Sophan, S.Kom., M.MT.")
 
         # Menampilkan gambar Dosen Penguji II di kolom kedua
