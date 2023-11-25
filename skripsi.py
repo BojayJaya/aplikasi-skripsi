@@ -76,15 +76,15 @@ with st.container():
 
         # Menampilkan gambar Dosen Penguji I di kolom pertama
         col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20rika.png', width=140, caption='Dosen Penguji I')
-        col1.write("#### Dr. Rika Yunitarini, ST., MT.")
+        col1.write("#### Moch. Kautsar Sophan, S.Kom., M.MT.")
 
         # Menampilkan gambar Dosen Penguji II di kolom kedua
         col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=140, caption='Dosen Penguji II')
-        col2.write("#### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
+        col2.write("#### Rosida Vivin Nahari, S.Kom., M.T.")
         
         # Menampilkan gambar Dosen Penguji III di kolom ketiga
         col3.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20rika.png', width=140, caption='Dosen Penguji III')
-        col3.write("#### Dr. Rika Yunitarini, ST., MT.")
+        col3.write("#### Dwi Kuswanto, S.Pd.,M.T.")
 
     elif selected == "Dataset":
         st.write("#### Deskripsi Dataset :")
