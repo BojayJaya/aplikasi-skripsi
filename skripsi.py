@@ -38,8 +38,8 @@ with st.container():
     with st.sidebar:
         selected = option_menu(
         st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
-        ["Home", "Dosen Pembimbing", "Dataset", "Implementation", "Tentang Kami"],
-            icons=['house', 'person', 'bar-chart', 'check2-square', 'info-circle'],
+        ["Home", "Dosen Pembimbing", "Dosen Penguji", "Dataset", "Implementation", "Tentang Kami"],
+            icons=['house', 'person','person', 'bar-chart', 'check2-square', 'info-circle'],
             menu_icon="cast", default_index=0,
             styles={
                 "container": {"padding": "0!important", "background-color": "#412a7a"},
@@ -67,6 +67,24 @@ with st.container():
         # Menampilkan gambar Dosen Pembimbing II di kolom kedua
         col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=165, caption='Dosen Pembimbing II')
         col2.write("#### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
+
+    elif selected == "Dosen Penguji":
+        st.write("""<h3 style = "text-align: center;">Dosen Pembimbing</h3>""", unsafe_allow_html=True)
+        
+        # Membuat tiga kolom, untuk Dosen Penguji I, Dosen Penguji II, dan Dosen Penguji III
+        col1, col2, col3 = st.columns(3)
+
+        # Menampilkan gambar Dosen Penguji I di kolom pertama
+        col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20rika.png', width=120, caption='Dosen Penguji I')
+        col1.write("#### Dr. Rika Yunitarini, ST., MT.")
+
+        # Menampilkan gambar Dosen Penguji II di kolom kedua
+        col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=120, caption='Dosen Penguji II')
+        col2.write("#### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
+        
+        # Menampilkan gambar Dosen Penguji III di kolom ketiga
+        col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20rika.png', width=120, caption='Dosen Penguji III')
+        col1.write("#### Dr. Rika Yunitarini, ST., MT.")
 
     elif selected == "Dataset":
         st.write("#### Deskripsi Dataset :")
