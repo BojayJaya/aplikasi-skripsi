@@ -117,7 +117,7 @@ with st.container():
         akurasi_svm_tanpa_qer_6040 = 0.90
 
         # Menyusun data ke dalam DataFrame
-        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+        data = {'Pembagian': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [akurasi_svm_tanpa_qer_9010, akurasi_svm_tanpa_qer_8020, akurasi_svm_tanpa_qer_7030, akurasi_svm_tanpa_qer_6040]}
 
         df_akurasi = pd.DataFrame(data)
