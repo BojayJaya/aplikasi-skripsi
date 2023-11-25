@@ -28,11 +28,8 @@ st.set_page_config(
     }
 )
 st.write("""
-<center><h2 style = "text-align: justify;">ANALISIS SENTIMEN JAMU MADURA MENGGUNAKAN ALGORITMA SUPPORT VECTOR MACHINE DAN QUERY EXPANSION RANKING</h2></center>
+<center><h2 style = "text-align: center;">ANALISIS SENTIMEN JAMU MADURA MENGGUNAKAN ALGORITMA SUPPORT VECTOR MACHINE DAN QUERY EXPANSION RANKING</h2></center>
 """,unsafe_allow_html=True)
-#st.write("### Dosen Pembimbing I: Dr. Rika Yunitarini, ST., MT.",unsafe_allow_html=True)
-#st.write("### Dosen Pembimbing II: Fifin Ayu Mufarroha, S.Kom., M.Kom.",unsafe_allow_html=True)
-
 
 with st.container():
     with st.sidebar:
