@@ -53,7 +53,7 @@ with st.container():
         </h3>""",unsafe_allow_html=True)
 
     elif selected == "Dosen Pembimbing":
-        st.write("""<h3 style = "text-align: center;">Dosen Pembimbing</h3>""", unsafe_allow_html=True)
+        st.write("""<h4 style = "text-align: center;">Dosen Pembimbing</h4>""", unsafe_allow_html=True)
         
         # Membuat dua kolom, satu untuk Dosen Pembimbing I dan satu lagi untuk Dosen Pembimbing II
         col1, col2 = st.columns(2)
@@ -67,7 +67,7 @@ with st.container():
         col2.write("#### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
 
     elif selected == "Dosen Penguji":
-        st.write("""<h3 style = "text-align: center;">Dosen Penguji</h3>""", unsafe_allow_html=True)
+        st.write("""<h4 style = "text-align: center;">Dosen Penguji</h4>""", unsafe_allow_html=True)
         
         # Membuat tiga kolom, untuk Dosen Penguji I, Dosen Penguji II, dan Dosen Penguji III
         col1, col2, col3 = st.columns(3)
