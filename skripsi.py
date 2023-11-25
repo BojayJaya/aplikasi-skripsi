@@ -36,8 +36,8 @@ with st.container():
     with st.sidebar:
         selected = option_menu(
         st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
-        ["Home", "Dosen Pembimbing", "Dosen Penguji", "Dataset", "Implementation", "Tentang Kami"],
-            icons=['house', 'person','person', 'bar-chart', 'check2-square', 'info-circle'],
+        ["Home", "Dosen Pembimbing", "Dosen Penguji", "Dataset", "Akurasi", "Implementation", "Tentang Kami"],
+            icons=['house', 'person','person', 'bar-chart', 'line-chart', 'check2-square', 'info-circle'],
             menu_icon="cast", default_index=0,
             styles={
                 "container": {"padding": "0!important", "background-color": "#412a7a"},
@@ -108,6 +108,19 @@ with st.container():
         st.write("##### Dataset Setelah Preprocessing :")
         dt_stlh_p = pd.read_csv("dt_stlh_p.csv")
         st.write(dt_stlh_p)
+
+    elif selected == "Akurasi":
+        st.write("""<h3 style = "text-align: center;">Akurasi SVM tanpa QER</h3>""", unsafe_allow_html=True)
+
+        # Menampilkan akurasi SVM tanpa QER (gantilah dengan nilai sesuai hasil akurasi Anda)
+        akurasi_svm_tanpa_qer = 0.85
+        st.write(f"Akurasi SVM tanpa QER: {akurasi_svm_tanpa_qer:.2%}")
+
+        st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
+
+        # Menampilkan akurasi SVM + QER (gantilah dengan nilai sesuai hasil akurasi Anda)
+        akurasi_svm_dengan_qer = 0.92
+        st.write(f"Akurasi SVM + QER: {akurasi_svm_dengan_qer:.2%}")
         
     elif selected == "Implementation":
         text = st.text_area('Masukkan kata yang akan di analisa:')
