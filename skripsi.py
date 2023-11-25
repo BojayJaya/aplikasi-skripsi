@@ -126,8 +126,8 @@ with st.container():
         st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
         # Menampilkan grafik
-        st.line_chart(df_akurasi.set_index('Pembagian Dataset'))
-        # st.pie_chart(df_akurasi.set_index('Pembagian Dataset'))
+        # st.line_chart(df_akurasi.set_index('Pembagian Dataset'))
+        st.pie_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.area_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.scatter_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.radar_chart(df_akurasi.set_index('Pembagian Dataset'))
