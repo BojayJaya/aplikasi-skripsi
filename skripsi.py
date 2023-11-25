@@ -60,7 +60,7 @@ with st.container():
 
         # Menampilkan gambar Dosen Pembimbing I di kolom pertama
         col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20rika.png', width=180, caption='Dosen Pembimbing I')
-        col1.write("#### <span style='font-size: smaller;'>Dr. Rika Yunitarini, ST., MT.</span>", unsafe_allow_html=True)
+        col1.write("<span style='font-size: smaller;'>Dr. Rika Yunitarini, ST., MT.</span>", unsafe_allow_html=True)
 
         # Menampilkan gambar Dosen Pembimbing II di kolom kedua
         col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=165, caption='Dosen Pembimbing II')
