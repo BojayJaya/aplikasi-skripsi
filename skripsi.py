@@ -65,7 +65,7 @@ with st.container():
         col1.write("#### Dr. Rika Yunitarini, ST., MT.")
 
         # Menampilkan gambar Dosen Pembimbing II di kolom kedua
-        col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=160, caption='Dosen Pembimbing II')
+        col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=165, caption='Dosen Pembimbing II')
         col2.write("#### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
 
     elif selected == "Dataset":
