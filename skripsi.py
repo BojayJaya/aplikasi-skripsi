@@ -60,11 +60,11 @@ with st.container():
 
         # Menampilkan gambar Dosen Pembimbing I di kolom pertama
         col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20rika.png', width=180, caption='Dosen Pembimbing I')
-        col1.write("#### Dr. Rika Yunitarini, ST., MT.")
+        col1.write("#### <span style='font-size: smaller;'>Dr. Rika Yunitarini, ST., MT.</span>", unsafe_allow_html=True)
 
         # Menampilkan gambar Dosen Pembimbing II di kolom kedua
         col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/c63bd64edf281b146e25034a49afff81a99ba927/ibuk%20fifin.png', width=165, caption='Dosen Pembimbing II')
-        col2.write("#### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
+        col2.write("#### <span style='font-size: smaller;'>Fifin Ayu Mufarroha, S.Kom., M.Kom.</span>", unsafe_allow_html=True)
 
     elif selected == "Dosen Penguji":
         st.write("""<h4 style = "text-align: center;">Dosen Penguji</h4>""", unsafe_allow_html=True)
@@ -74,11 +74,11 @@ with st.container():
 
         # Menampilkan gambar Dosen Penguji I di kolom pertama
         col1.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/143c91b72abdc33c1a86d1df68f305f35e417f69/bapak%20kautsar.png', width=170, caption='Dosen Penguji I')
-        col1.write("#### Moch. Kautsar Sophan, S.Kom., M.MT.")
+        col1.write("#### <span style='font-size: smaller;'>Moch. Kautsar Sophan, S.Kom., M.MT.</span>", unsafe_allow_html=True)
 
         # Menampilkan gambar Dosen Penguji II di kolom kedua
         col2.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/143c91b72abdc33c1a86d1df68f305f35e417f69/ibuk%20rosida.png', width=160, caption='Dosen Penguji II')
-        col2.write("#### Rosida Vivin Nahari, S.Kom., M.T.")
+        col2.write("#### <span style='font-size: smaller;'>Rosida Vivin Nahari, S.Kom., M.T.</span>", unsafe_allow_html=True)
         
         # Menampilkan gambar Dosen Penguji III di kolom ketiga
         col3.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/143c91b72abdc33c1a86d1df68f305f35e417f69/bapak%20dwi.png', width=160, caption='Dosen Penguji III')
