@@ -110,6 +110,7 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Akurasi":
+
         # Menyusun data ke dalam DataFrame
         data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [0.93, 0.85, 0.92, 0.88]}
@@ -121,8 +122,7 @@ with st.container():
 
         # Menampilkan grafik
         # st.line_chart(df_akurasi.set_index('Pembagian Dataset'))
-        st.pie_chart(df_akurasi.set_index('Pembagian Dataset'))
-        # st.area_chart(df_akurasi.set_index('Pembagian Dataset'))
+        st.area_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.scatter_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.radar_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.bubble_chart(df_akurasi.set_index('Pembagian Dataset'))
