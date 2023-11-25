@@ -110,8 +110,6 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Akurasi":
-        st.write("""<h3 style = "text-align: center;">Akurasi SVM tanpa QER</h3>""", unsafe_allow_html=True)
-
         # 4 hasil akurasi
         akurasi_svm_tanpa_qer_9010 = 0.85
         akurasi_svm_tanpa_qer_8020 = 0.92
