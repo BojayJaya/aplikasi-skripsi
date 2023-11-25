@@ -82,7 +82,7 @@ with st.container():
         
         # Menampilkan gambar Dosen Penguji III di kolom ketiga
         col3.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/143c91b72abdc33c1a86d1df68f305f35e417f69/bapak%20dwi.png', width=160, caption='Dosen Penguji III')
-        col3.write("#### Dwi Kuswanto, S.Pd.,M.T.")
+        col3.write("#### <span style='font-size: smaller;'>Dwi Kuswanto, S.Pd.,M.T.</span>", unsafe_allow_html=True)
 
     elif selected == "Dataset":
         st.write("#### Deskripsi Dataset :")
