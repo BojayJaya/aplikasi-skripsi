@@ -110,15 +110,9 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Akurasi":
-        # 4 hasil akurasi
-        akurasi_svm_tanpa_qer_9010 = 0.85
-        akurasi_svm_tanpa_qer_8020 = 0.92
-        akurasi_svm_tanpa_qer_7030 = 0.88
-        akurasi_svm_tanpa_qer_6040 = 0.90
-
         # Menyusun data ke dalam DataFrame
         data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [akurasi_svm_tanpa_qer_9010, akurasi_svm_tanpa_qer_8020, akurasi_svm_tanpa_qer_7030, akurasi_svm_tanpa_qer_6040]}
+                'Akurasi': [0.93, 0.85, 0.92, 0.88]}
 
         df_akurasi = pd.DataFrame(data)
 
@@ -132,7 +126,6 @@ with st.container():
         # st.scatter_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.radar_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.bubble_chart(df_akurasi.set_index('Pembagian Dataset'))
-
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
 
