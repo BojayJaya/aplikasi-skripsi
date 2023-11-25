@@ -117,13 +117,13 @@ with st.container():
         akurasi_svm_tanpa_qer_6040 = 0.90
 
         # Menyusun data ke dalam DataFrame
-        data = {'Model': ['90:10', '80:20', '70:30', '60:40'],
+        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [akurasi_svm_tanpa_qer_9010, akurasi_svm_tanpa_qer_8020, akurasi_svm_tanpa_qer_7030, akurasi_svm_tanpa_qer_6040]}
 
         df_akurasi = pd.DataFrame(data)
 
         # Menampilkan judul grafik
-        st.write("""<h3 style="text-align: center;">Grafik Akurasi Model</h3>""", unsafe_allow_html=True)
+        st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
         # Menampilkan grafik
         st.bar_chart(df_akurasi.set_index('Model'))
