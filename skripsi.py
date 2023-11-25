@@ -57,12 +57,11 @@ with st.container():
     elif selected == "Dospem":
         st.write("""<h3 style = "text-align: center;">Dosen Pembimbing</h3>""", unsafe_allow_html=True)
         
-        st.image('https://raw.githubusercontent.com/nama_pengguna/nama_repositori/branch/path/to/foto_dosen_pembimbing1.jpg', width=120, caption='Dosen Pembimbing I')
+        st.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/0955709b5562b61de26628cb17fba8f93019db6d/ibu%20rika.png', width=120, caption='Dosen Pembimbing I')
         st.write("### Dr. Rika Yunitarini, ST., MT.")
         
-        st.image('https://raw.githubusercontent.com/nama_pengguna/nama_repositori/branch/path/to/foto_dosen_pembimbing2.jpg', width=120, caption='Dosen Pembimbing II')
+        st.image('https://raw.githubusercontent.com/BojayJaya/aplikasi-skripsi/0955709b5562b61de26628cb17fba8f93019db6d/ibu%20fifin.png', width=120, caption='Dosen Pembimbing II')
         st.write("### Fifin Ayu Mufarroha, S.Kom., M.Kom.")
-
 
     elif selected == "Dataset":
         st.write("#### Deskripsi Dataset :")
