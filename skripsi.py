@@ -122,8 +122,8 @@ with st.container():
 
         # Menampilkan grafik
         # st.line_chart(df_akurasi.set_index('Pembagian Dataset'))
-        st.area_chart(df_akurasi.set_index('Pembagian Dataset'))
-        # st.scatter_chart(df_akurasi.set_index('Pembagian Dataset'))
+        # st.area_chart(df_akurasi.set_index('Pembagian Dataset'))
+        st.scatter_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.radar_chart(df_akurasi.set_index('Pembagian Dataset'))
         # st.bubble_chart(df_akurasi.set_index('Pembagian Dataset'))
 
