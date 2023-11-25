@@ -116,7 +116,7 @@ with st.container():
 
             ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
 
-            with open('tf_idf_baru.pkl', 'rb') as file:
+            with open('tfidf.pkl', 'rb') as file:
                 loaded_data_tfid = pickle.load(file)
             tf_idf_baru = loaded_data_tfid.fit_transform(ulasan_dataset_preprocessed)
 
