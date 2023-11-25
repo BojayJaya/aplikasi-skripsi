@@ -112,9 +112,24 @@ with st.container():
     elif selected == "Akurasi":
         st.write("""<h3 style = "text-align: center;">Akurasi SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
-        # Menampilkan akurasi SVM tanpa QER (gantilah dengan nilai sesuai hasil akurasi Anda)
-        akurasi_svm_tanpa_qer = 0.85
-        st.write(f"Akurasi SVM tanpa QER: {akurasi_svm_tanpa_qer:.2%}")
+        # 4 hasil akurasi
+        akurasi_svm_tanpa_qer_9010 = 0.85
+        akurasi_svm_tanpa_qer_8020 = 0.92
+        akurasi_svm_tanpa_qer_7030 = 0.88
+        akurasi_svm_tanpa_qer_6040 = 0.90
+
+        # Menyusun data ke dalam DataFrame
+        data = {'Model': ['90:10', '80:20', '70:30', '60:40'],
+                'Akurasi': [akurasi_svm_tanpa_qer_9010, akurasi_svm_tanpa_qer_8020, akurasi_svm_tanpa_qer_7030, akurasi_svm_tanpa_qer_6040]}
+
+        df_akurasi = pd.DataFrame(data)
+
+        # Menampilkan judul grafik
+        st.write("""<h3 style="text-align: center;">Grafik Akurasi Model</h3>""", unsafe_allow_html=True)
+
+        # Menampilkan grafik
+        st.bar_chart(df_akurasi.set_index('Model'))
+
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
 
