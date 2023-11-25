@@ -38,7 +38,7 @@ with st.container():
     with st.sidebar:
         selected = option_menu(
         st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
-        ["Home", "Dospem", "Dataset", "Implementation", "Tentang Kami"],
+        ["Home", "Dosen Pembimbing", "Dataset", "Implementation", "Tentang Kami"],
             icons=['house', 'person', 'bar-chart', 'check2-square', 'info-circle'],
             menu_icon="cast", default_index=0,
             styles={
@@ -54,7 +54,7 @@ with st.container():
         <img src="https://cf.shopee.co.id/file/224536e9ed4a0e07d2981cc0789350ea" width="500" height="300">
         </h3>""",unsafe_allow_html=True)
 
-    elif selected == "Dospem":
+    elif selected == "Dosen Pembimbing":
         st.write("""<h3 style = "text-align: center;">Dosen Pembimbing</h3>""", unsafe_allow_html=True)
         
         # Membuat dua kolom, satu untuk Dosen Pembimbing I dan satu lagi untuk Dosen Pembimbing II
