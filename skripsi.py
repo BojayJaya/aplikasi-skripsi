@@ -12,6 +12,7 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 import pickle
+import matplotlib.pyplot as plt
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -118,13 +119,15 @@ with st.container():
         df_akurasi = pd.DataFrame(data)
 
         # Mengubah nilai akurasi ke dalam format persen
-        df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: f'{x*100:.2f}%')
+        df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: x * 100)
 
-        # Menampilkan judul grafik
-        st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
-
-        # Bar chart dengan akurasi dalam format persen, diurutkan dari yang tertinggi
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset').sort_values(by='Akurasi', ascending=False))
+        # Membuat plot menggunakan Matplotlib
+        plt.figure(figsize=(8, 6))
+        plt.barh(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue')
+        plt.xlabel('Akurasi (%)')
+        plt.title('Grafik Akurasi Model SVM tanpa QER')
+        plt.gca().invert_yaxis()  # Memflip sumbu y agar data teratas muncul di bagian atas
+        st.pyplot(plt)
 
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
