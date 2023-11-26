@@ -111,17 +111,20 @@ with st.container():
 
     elif selected == "Akurasi":
 
-        # Menyusun data ke dalam DataFrame
+        # Menyusun data ke dalam DataFrame dengan urutan yang diinginkan
         data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [0.93, 0.85, 0.92, 0.88]}
 
         df_akurasi = pd.DataFrame(data)
 
+        # Mengubah nilai akurasi ke dalam format persen
+        df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: f'{x*100:.2f}%')
+
         # Menampilkan judul grafik
         st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'))
-        
+        # Bar chart dengan akurasi dalam format persen
+        st.bar_chart(df_akurasi.set_index('Pembagian Dataset').sort_index())
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
 
