@@ -117,13 +117,14 @@ with st.container():
 
         df_akurasi = pd.DataFrame(data)
 
+        # Mengubah nilai akurasi ke dalam format persen
+        df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: f'{x*100:.2f}%')
+
         # Menampilkan judul grafik
         st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
-        # Menampilkan grafik
-        # st.line_chart(df_akurasi.set_index('Pembagian Dataset'))
-        # st.area_chart(df_akurasi.set_index('Pembagian Dataset'))
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'))
+        # Pie chart
+        st.pie_chart(df_akurasi.set_index('Pembagian Dataset'))
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
 
