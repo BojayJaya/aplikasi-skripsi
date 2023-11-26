@@ -122,7 +122,7 @@ with st.container():
         df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: x * 100)
 
         # Membuat plot menggunakan Matplotlib
-        plt.figure(figsize=(4, 4))
+        plt.figure(figsize=(6, 3))
         bars = plt.bar(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue', width=0.4)
 
         # Menambahkan label akurasi di atas setiap bar
