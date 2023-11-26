@@ -122,7 +122,7 @@ with st.container():
         # Menampilkan judul grafik
         st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), width=2, height=300)
+        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
 
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
