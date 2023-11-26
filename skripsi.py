@@ -123,8 +123,9 @@ with st.container():
         # Menampilkan judul grafik
         st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
-        # Bar chart dengan akurasi dalam format persen
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset').sort_index())
+        # Bar chart dengan akurasi dalam format persen, diurutkan dari yang tertinggi
+        st.bar_chart(df_akurasi.set_index('Pembagian Dataset').sort_values(by='Akurasi', ascending=False))
+
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
 
