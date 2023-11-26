@@ -12,7 +12,6 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 import pickle
-import matplotlib.pyplot as plt
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -112,28 +111,18 @@ with st.container():
 
     elif selected == "Akurasi":
 
-        # Menyusun data ke dalam DataFrame dengan urutan yang diinginkan
+        # Menyusun data ke dalam DataFrame
         data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [0.93, 0.85, 0.92, 0.88]}
 
         df_akurasi = pd.DataFrame(data)
-
         # Mengubah nilai akurasi ke dalam format persen
-        df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: x * 100)
+        # df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: f'{x*100:.2f}%')
 
-        # Membuat plot menggunakan Matplotlib
-        plt.figure(figsize=(6, 3))
-        bars = plt.bar(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue', width=0.4)
+        # Menampilkan judul grafik
+        st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
 
-        # Menambahkan label akurasi di atas setiap bar
-        for bar in bars:
-            yval = bar.get_height()
-            plt.text(bar.get_x() + bar.get_width()/2, yval, f'{yval:.2f}%', ha='center', va='bottom')
-
-        plt.ylabel('Akurasi (%)')
-        plt.title('Grafik Akurasi Model SVM tanpa QER')
-        st.pyplot(plt)
-
+        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'))
 
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
