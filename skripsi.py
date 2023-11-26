@@ -123,7 +123,13 @@ with st.container():
 
         # Membuat plot menggunakan Matplotlib
         plt.figure(figsize=(8, 6))
-        plt.bar(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue')
+        bars = plt.bar(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue')
+
+        # Menambahkan label akurasi di atas setiap bar
+        for bar in bars:
+            yval = bar.get_height()
+            plt.text(bar.get_x() + bar.get_width()/2, yval, f'{yval:.2f}%', ha='center', va='bottom')
+
         plt.ylabel('Akurasi (%)')
         plt.title('Grafik Akurasi Model SVM tanpa QER')
         st.pyplot(plt)
