@@ -113,7 +113,7 @@ with st.container():
 
         # Menyusun data ke dalam DataFrame
         data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [0.93, 0.85, 0.92, 0.88]}
+                'Akurasi': [93, 92, 90.6, 90.75]}
 
         df_akurasi = pd.DataFrame(data)
         # Mengubah nilai akurasi ke dalam format persen
