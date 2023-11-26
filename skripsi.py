@@ -123,7 +123,7 @@ with st.container():
 
         # Membuat plot menggunakan Matplotlib
         plt.figure(figsize=(6, 4))
-        bars = plt.bar(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue')
+        bars = plt.bar(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue', width=0.6)
 
         # Menambahkan label akurasi di atas setiap bar
         for bar in bars:
