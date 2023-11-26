@@ -120,7 +120,7 @@ with st.container():
         # df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: f'{x*100:.2f}%')
 
         # Menampilkan judul grafik
-        st.write("""<h3 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h3>""", unsafe_allow_html=True)
+        st.write("""<h5 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h5>""", unsafe_allow_html=True)
 
         st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
 
@@ -146,22 +146,22 @@ with st.container():
 
         # Menampilkan chart untuk rasio seleksi fitur 25% di kiri atas
         with col1:
-            st.write("""<h4 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 25%)</h4>""", unsafe_allow_html=True)
+            st.write("""<h5 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 25%)</h5>""", unsafe_allow_html=True)
             st.bar_chart(df_akurasi_25.set_index('Pembagian Dataset'), height=300)
 
         # Menampilkan chart untuk rasio seleksi fitur 50% di kanan atas
         with col2:
-            st.write("""<h4 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 50%)</h4>""", unsafe_allow_html=True)
+            st.write("""<h5 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 50%)</h5>""", unsafe_allow_html=True)
             st.bar_chart(df_akurasi_50.set_index('Pembagian Dataset'), height=300)
 
         # Menampilkan chart untuk rasio seleksi fitur 75% di kiri bawah
         with col1:
-            st.write("""<h4 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 75%)</h4>""", unsafe_allow_html=True)
+            st.write("""<h5 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 75%)</h5>""", unsafe_allow_html=True)
             st.bar_chart(df_akurasi_75.set_index('Pembagian Dataset'), height=300)
 
         # Menampilkan chart untuk rasio seleksi fitur 100% di kanan bawah
         with col2:
-            st.write("""<h4 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h4>""", unsafe_allow_html=True)
+            st.write("""<h5 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h5>""", unsafe_allow_html=True)
             st.bar_chart(df_akurasi_100.set_index('Pembagian Dataset'), height=300)
 
         
