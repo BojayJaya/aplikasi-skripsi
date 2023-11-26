@@ -125,31 +125,72 @@ with st.container():
         st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
 
 
-        st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
+        # st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
 
-        st.write("Rasio Seleksi Fitur 25%")
-        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [93, 92, 90.6, 90.75]}
-        df_akurasi = pd.DataFrame(data)
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
+        # st.write("Rasio Seleksi Fitur 25%")
+        # data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+        #         'Akurasi': [93, 92, 90.6, 90.75]}
+        # df_akurasi = pd.DataFrame(data)
+        # st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
 
-        st.write("Rasio Seleksi Fitur 50%")
-        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [93, 92, 90.6, 90.75]}
-        df_akurasi = pd.DataFrame(data)
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
+        # st.write("Rasio Seleksi Fitur 50%")
+        # data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+        #         'Akurasi': [93, 92, 90.6, 90.75]}
+        # df_akurasi = pd.DataFrame(data)
+        # st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
 
-        st.write("Rasio Seleksi Fitur 75%")
-        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+        # st.write("Rasio Seleksi Fitur 75%")
+        # data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+        #         'Akurasi': [93, 92, 90.6, 90.75]}
+        # df_akurasi = pd.DataFrame(data)
+        # st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
+
+        # st.write("Rasio Seleksi Fitur 100%")
+        # data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+        #         'Akurasi': [93, 92, 90.6, 90.75]}
+        # df_akurasi = pd.DataFrame(data)
+        # st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
+
+        # Menyusun data ke dalam DataFrame
+        data_25 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [93, 92, 90.6, 90.75]}
-        df_akurasi = pd.DataFrame(data)
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
-        
-        st.write("Rasio Seleksi Fitur 100%")
-        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+        df_akurasi_25 = pd.DataFrame(data_25)
+
+        data_50 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [93, 92, 90.6, 90.75]}
-        df_akurasi = pd.DataFrame(data)
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
+        df_akurasi_50 = pd.DataFrame(data_50)
+
+        data_75 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+                'Akurasi': [93, 92, 90.6, 90.75]}
+        df_akurasi_75 = pd.DataFrame(data_75)
+
+        data_100 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+                    'Akurasi': [93, 92, 90.6, 90.75]}
+        df_akurasi_100 = pd.DataFrame(data_100)
+
+        # Membuat layout kolom
+        col1, col2 = st.columns(2)
+
+        # Menampilkan chart untuk rasio seleksi fitur 25% di kiri atas
+        with col1:
+            st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 25%)</h3>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_25.set_index('Pembagian Dataset'), height=300)
+
+        # Menampilkan chart untuk rasio seleksi fitur 50% di kanan atas
+        with col2:
+            st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 50%)</h3>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_50.set_index('Pembagian Dataset'), height=300)
+
+        # Menampilkan chart untuk rasio seleksi fitur 75% di kiri bawah
+        with col1:
+            st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 75%)</h3>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_75.set_index('Pembagian Dataset'), height=300)
+
+        # Menampilkan chart untuk rasio seleksi fitur 100% di kanan bawah
+        with col2:
+            st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h3>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_100.set_index('Pembagian Dataset'), height=300)
+
         
     elif selected == "Implementation":
         text = st.text_area('Masukkan kata yang akan di analisa:')
