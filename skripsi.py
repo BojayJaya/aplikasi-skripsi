@@ -123,11 +123,11 @@ with st.container():
 
         # Membuat plot menggunakan Matplotlib
         plt.figure(figsize=(8, 6))
-        plt.barh(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue')
-        plt.xlabel('Akurasi (%)')
+        plt.bar(df_akurasi['Pembagian Dataset'], df_akurasi['Akurasi'], color='skyblue')
+        plt.ylabel('Akurasi (%)')
         plt.title('Grafik Akurasi Model SVM tanpa QER')
-        plt.gca().invert_yaxis()  # Memflip sumbu y agar data teratas muncul di bagian atas
         st.pyplot(plt)
+
 
 
         st.write("""<h3 style = "text-align: center;">Akurasi SVM + QER</h3>""", unsafe_allow_html=True)
