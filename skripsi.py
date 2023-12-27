@@ -113,7 +113,7 @@ with st.container():
 
         # Menyusun data ke dalam DataFrame
         data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [93, 92, 90.67, 90.75]}
+                'Akurasi': [87, 91, 93, 89]}
 
         df_akurasi = pd.DataFrame(data)
         # Mengubah nilai akurasi ke dalam format persen
@@ -126,19 +126,19 @@ with st.container():
 
         # Menyusun data ke dalam DataFrame
         data_25 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [81, 84.5, 85.33, 83.25]}
+                'Akurasi': [76, 84, 85, 83]}
         df_akurasi_25 = pd.DataFrame(data_25)
 
         data_50 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [89, 90.5, 91, 90.25]}
+                'Akurasi': [90, 92, 94, 87]}
         df_akurasi_50 = pd.DataFrame(data_50)
 
         data_75 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [93, 93, 91.33, 90.5]}
+                'Akurasi': [93, 92, 90, 89]}
         df_akurasi_75 = pd.DataFrame(data_75)
 
         data_100 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                    'Akurasi': [92, 94, 93, 91]}
+                    'Akurasi': [91, 91, 94, 90]}
         df_akurasi_100 = pd.DataFrame(data_100)
 
         # Membuat layout kolom
