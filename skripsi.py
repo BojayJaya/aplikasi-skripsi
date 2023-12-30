@@ -1,4 +1,5 @@
 from streamlit_option_menu import option_menu
+import matplotlib.pyplot as plt
 import streamlit as st
 import pandas as pd
 import  re
@@ -109,9 +110,48 @@ with st.container():
         st.write(dt_stlh_p)
 
     # Tambahan opsi untuk Sentimen
-    if selected == "Sentimen":
-         st.subheader("Analisis Sentimen")
-        # Tambahkan elemen-elemen untuk analisis sentimen di sini
+    elif selected == "Sentimen":
+        st.subheader("Analisis Sentimen")
+
+        sentimen_file_path = pd.read_csv("sentimen.csv")
+
+        # Membaca dataset sentimen dari file CSV
+        sentimen_data = pd.read_csv(sentimen_file_path)
+
+        # Menentukan lebar bar
+        bar_width = 0.35
+
+        # Plotting bar chart untuk label positif
+        bar1 = plt.bar(sentimen_data['Bulan'], sentimen_data['Jumlah Positif'], bar_width, label='Positif')
+
+        # Plotting bar chart untuk label negatif
+        bar2 = plt.bar(sentimen_data['Bulan'] + bar_width, sentimen_data['Jumlah Negatif'], bar_width, label='Negatif')
+
+        # Menambahkan teks di atas bar chart
+        for rect in bar1:
+            height = rect.get_height()
+            plt.text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
+
+        for rect in bar2:
+            height = rect.get_height()
+            plt.text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
+
+        # Menambahkan label dan judul
+        plt.xlabel('Bulan')
+        plt.ylabel('Jumlah')
+        plt.title('Grafik untuk Label Positif dan Negatif setiap bulannya')
+
+        # Menambahkan ticks label di sumbu x
+        plt.xticks(sentimen_data['Bulan'] + bar_width / 2, sentimen_data['Bulan'], ha='right')
+
+        # Tampilkan legenda
+        plt.legend(title='Label', loc='upper right')
+
+        # Menyesuaikan layout agar label tidak terpotong
+        plt.tight_layout()
+
+        # Show the plot
+        plt.show()
 
     elif selected == "Akurasi":
 
