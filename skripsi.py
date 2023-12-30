@@ -205,7 +205,7 @@ with st.container():
 
             # Manual pembagian dataset
             total_data = len(ulasan_dataset)
-            train_size = int(total_data * 0.9)
+            train_size = int(total_data * 0.8)
             
             X_train = ulasan_dataset_preprocessed[:train_size]
             y_train = sentimen[:train_size]
