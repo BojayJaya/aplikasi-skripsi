@@ -109,7 +109,7 @@ with st.container():
         dt_stlh_p = pd.read_csv("dt_stlh_p.csv")
         st.write(dt_stlh_p)
 
-    # Opsi untuk Sentimen
+# Opsi untuk Sentimen
     elif selected == "Sentimen":
         st.subheader("Analisis Sentimen")
 
@@ -125,10 +125,10 @@ with st.container():
         bar_width = 0.35
 
         # Plotting bar chart untuk label positif
-        bar1 = plt.bar(sentimen_data['Bulan'], sentimen_data['Jumlah Positif'], bar_width, label='Positif')
+        bar1 = plt.bar(sentimen_data['bulan'], sentimen_data['jumlah_positif'], bar_width, label='Positif')
 
         # Plotting bar chart untuk label negatif
-        bar2 = plt.bar(sentimen_data['Bulan'] + bar_width, sentimen_data['Jumlah Negatif'], bar_width, label='Negatif')
+        bar2 = plt.bar(sentimen_data['bulan'] + bar_width, sentimen_data['jumlah_negatif'], bar_width, label='Negatif')
 
         # Menambahkan teks di atas bar chart
         for rect in bar1:
@@ -145,7 +145,7 @@ with st.container():
         plt.title('Grafik untuk Label Positif dan Negatif setiap bulannya')
 
         # Menambahkan ticks label di sumbu x
-        plt.xticks(sentimen_data['Bulan'] + bar_width / 2, sentimen_data['Bulan'], ha='right')
+        plt.xticks(sentimen_data['bulan'] + bar_width / 2, sentimen_data['bulan'], ha='right')
 
         # Tampilkan legenda
         plt.legend(title='Label', loc='upper right')
