@@ -9,9 +9,8 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
-from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
-import pickle
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -215,19 +214,21 @@ with st.container():
             X_test = test_dataset.drop('label', axis=1)
             y_test = test_dataset['label']
 
-            with open('tfidf.pkl', 'rb') as file:
-                loaded_data_tfid = pickle.load(file)
+            # Inisialisasi TfidfVectorizer
+            tfidf_vectorizer = TfidfVectorizer()
 
             # Transformasi TF-IDF pada dataset pelatihan dan uji
-            tf_idf_train = loaded_data_tfid.transform(X_train)
-            tf_idf_test = loaded_data_tfid.transform(X_test)
+            tf_idf_train = tfidf_vectorizer.fit_transform(X_train)
+            tf_idf_test = tfidf_vectorizer.transform(X_test)
 
             # Melatih model SVM
             svm_clf = SVC()
             svm_clf.fit(tf_idf_train, y_train)
 
             # Melakukan prediksi pada data uji
-            y_preds = svm_clf.predict(tf_idf_test)
+            preprocessed_text = preprocessing_data(text)
+            v_data = tfidf_vectorizer.transform([preprocessed_text])
+            y_preds = svm_clf.predict(v_data)
 
             st.subheader('Prediksi:')
             if y_preds[0] == "positif":
