@@ -35,14 +35,14 @@ with st.container():
     with st.sidebar:
         selected = option_menu(
             st.write("""<h3 style = "text-align: center;"><img src="https://asset.kompas.com/crops/78bBP1gjXGFghLuRKY-TrLpD7UI=/0x0:1000x667/750x500/data/photo/2020/09/19/5f660d3e0141f.jpg" width="120" height="120"></h3>""",unsafe_allow_html=True), 
-            ["Home", "Dosen Pembimbing", "Dosen Penguji", "Dataset", "Akurasi", "Implementation", "Tentang Kami"],
-            icons=['house', 'person','person', 'bar-chart', 'check-circle', 'check2-square', 'info-circle'],
+            ["Home", "Dosen Pembimbing", "Dosen Penguji", "Dataset", "Sentimen", "Akurasi", "Implementation", "Tentang Kami"],
+            icons=['house', 'person', 'person', 'bar-chart', 'check-circle', 'check2-square', 'info-circle'],
             menu_icon="cast", default_index=0,
             styles={
                 "container": {"padding": "0!important", "background-color": "#412a7a"},
                 "icon": {"color": "white", "font-size": "18px"}, 
                 "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "color":"white"},
-                "nav-link-selected":{"background-color": "#412a7a"}
+                "nav-link-selected": {"background-color": "#412a7a"}
             }
         )
 
@@ -107,6 +107,11 @@ with st.container():
         st.write("##### Dataset Setelah Preprocessing :")
         dt_stlh_p = pd.read_csv("dt_stlh_p.csv")
         st.write(dt_stlh_p)
+
+    # Tambahan opsi untuk Sentimen
+    if selected == "Sentimen":
+         st.subheader("Analisis Sentimen")
+        # Tambahkan elemen-elemen untuk analisis sentimen di sini
 
     elif selected == "Akurasi":
 
@@ -204,7 +209,7 @@ with st.container():
 
             # Manual pembagian dataset
             total_data = len(ulasan_dataset)
-            train_size = int(total_data * 0.9)
+            train_size = int(total_data * 0.8)
             
             X_train = ulasan_dataset_preprocessed[:train_size]
             y_train = sentimen[:train_size]
