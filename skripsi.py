@@ -150,7 +150,6 @@ with st.container():
             st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h6>""", unsafe_allow_html=True)
             st.bar_chart(df_akurasi_100.set_index('Pembagian Dataset'), height=300)
         
-        st.write("#####  Label Positif dan Negatif / Tahun") 
         # TAHUN
         tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
                 'Positif': [9, 68, 117, 183, 23],
