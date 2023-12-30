@@ -11,6 +11,7 @@ from nltk.stem import PorterStemmer
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
+import pickle
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -186,7 +187,8 @@ with st.container():
                 stop_words = set(stopwords.words('indonesian'))
                 factory = StopWordRemoverFactory()
                 stopword_remover = factory.create_stop_word_remover()
-                text = [stopword_remover.remove(token) for token in text if token not in stop_words]
+                text = [token for token in text if token not in stop_words]
+                text = [stopword_remover.remove(token) for token in text]
 
                 # Stemming
                 stemmer = PorterStemmer()
@@ -195,35 +197,34 @@ with st.container():
                 # Menggabungkan token kembali menjadi satu string
                 return ' '.join(text)
 
-            selected_train_dataset = "train_70_rasio_100.csv"
-            selected_test_dataset = "test_30_rasio_100.csv"
+            Dt_Ujm = pd.read_csv("dt_stlh_p.csv")
+            ulasan_dataset = Dt_Ujm['ulasan']
+            sentimen = Dt_Ujm['label']
 
-            train_dataset = pd.read_csv(selected_train_dataset).dropna()
-            X_train = train_dataset[['ulasan']]
+            ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
+
+            # Manual pembagian dataset
+            total_data = len(ulasan_dataset)
+            train_size = int(total_data * 0.9)
             
-            if 'ulasan' not in train_dataset.columns or X_train.empty:
-                st.error('Kolom "ulasan" tidak ditemukan dalam dataset pelatihan atau dataset pelatihan kosong. Periksa struktur dataset Anda.')
-                st.stop()
+            X_train = ulasan_dataset_preprocessed[:train_size]
+            y_train = sentimen[:train_size]
+            
+            X_test = ulasan_dataset_preprocessed[train_size:]
+            y_test = sentimen[train_size:]
 
-            y_train = train_dataset['label']
-
-            test_dataset = pd.read_csv(selected_test_dataset).dropna()
-            X_test = test_dataset[['ulasan']]
-
-            if 'ulasan' not in test_dataset.columns or X_test.empty:
-                st.error('Kolom "ulasan" tidak ditemukan dalam dataset uji atau dataset uji kosong. Periksa struktur dataset Anda.')
-                st.stop()
-
-            y_test = test_dataset['label']
-
+            # Inisialisasi TfidfVectorizer
             tfidf_vectorizer = TfidfVectorizer()
 
-            tf_idf_train = tfidf_vectorizer.fit_transform(X_train['ulasan'])
-            tf_idf_test = tfidf_vectorizer.transform(X_test['ulasan'])
+            # Transformasi TF-IDF pada dataset ulasan yang telah di-preprocess
+            tf_idf_train = tfidf_vectorizer.fit_transform(X_train)
+            tf_idf_test = tfidf_vectorizer.transform(X_test)
 
+            # Melatih model SVM
             svm_clf = SVC()
             svm_clf.fit(tf_idf_train, y_train)
 
+            # Melakukan prediksi pada data uji
             preprocessed_text = preprocessing_data(text)
             v_data = tfidf_vectorizer.transform([preprocessed_text])
             y_preds = svm_clf.predict(v_data)
