@@ -110,7 +110,7 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Sentimen":
-        # Bulan di Tahun 2019
+        # Bulan di tahun 2019
         bulan = {'Bulan': ['Agustus', 'September', 'Oktober', 'November', 'Desember'],
                 'Positif': [1, 2, 2, 4, 0],
                 'Negatif': [0, 1, 3, 5, 1]}
@@ -128,14 +128,14 @@ with st.container():
 
         # Menambah total label positif di atas batang positif
         for i, value in enumerate(df_bulan['Positif']):
-            ax.text(i + 0.2, value + 1, str(value), ha='center', va='bottom', color='black')
+            ax.text(i + 0.2, value + 0.1, f'Total: {value}', ha='center', va='bottom', color='black', fontsize=8)
 
         # Bar chart untuk Negatif (merah)
         ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
 
         # Menambah total label negatif di atas batang negatif
         for i, value in enumerate(df_bulan['Negatif']):
-            ax.text(i - 0.2, value + 1, str(value), ha='center', va='bottom', color='black')
+            ax.text(i - 0.2, value + 0.1, f'Total: {value}', ha='center', va='bottom', color='black', fontsize=8)
 
         # Menambah legenda, judul, dan label sumbu
         ax.legend()
@@ -144,7 +144,7 @@ with st.container():
         ax.set_ylabel('Jumlah')
 
         # Tampilkan plot
-        st.pyplot(fig)
+st.pyplot(fig)
 
         # TAHUN
         tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
