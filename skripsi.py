@@ -170,11 +170,16 @@ with st.container():
         # Create a two-column layout
         col1, col2 = st.beta_columns(2)
 
-        # Bar chart for positive labels in the left column with green color
-        col1.bar_chart(df_tahun.set_index('Tahun')['Positif'], use_container_width=True, color='green')
+        # Function to create a bar chart with custom colors
+        def create_bar_chart(data, label, color, col):
+            col.bar_chart(data.set_index('Tahun')[label], use_container_width=True, color=color)
+            col.subheader(f'Grafik Total Label {label} Setiap Tahun')
 
-        # Bar chart for negative labels in the right column with red color
-        col2.bar_chart(df_tahun.set_index('Tahun')['Negatif'], use_container_width=True, color='red')
+        # Create bar chart for positive labels with green color
+        create_bar_chart(df_tahun, 'Positif', 'green', col1)
+
+        # Create bar chart for negative labels with red color
+        create_bar_chart(df_tahun, 'Negatif', 'red', col2)
 
     elif selected == "Akurasi":
 
