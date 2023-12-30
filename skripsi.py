@@ -175,7 +175,7 @@ with st.container():
         # Bar chart kanan untuk Negatif (merah)
         # Menentukan posisi x-axis untuk bar chart kanan
         x_right = [x + bar_width for x in range(len(df_tahun['Tahun']))]
-        st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], use_container_width=True, color='red', width=bar_width, key='right', use_container_width=True)
+        st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], color='red', width=bar_width, key='right', use_container_width=True)
 
     elif selected == "Akurasi":
 
