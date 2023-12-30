@@ -134,11 +134,6 @@ with st.container():
                 'Negatif': year_data['total_label_negatif']
             })
 
-            # Menampilkan label dan judul
-            st.xlabel('Bulan')
-            st.ylabel('Jumlah')
-            st.title(f'Grafik untuk Label Positif dan Negatif Tahun {selected_year} setiap bulannya')
-
     elif selected == "Akurasi":
 
         # Menyusun data ke dalam DataFrame
