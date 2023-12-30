@@ -9,9 +9,8 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
-from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
-import pickle
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -197,33 +196,44 @@ with st.container():
                 # Menggabungkan token kembali menjadi satu string
                 return ' '.join(text)
 
-            Dt_Ujm = pd.read_csv("dt_stlh_p.csv")
-            ulasan_dataset = Dt_Ujm['ulasan']
-            sentimen = Dt_Ujm['label']
+            # Pilih salah satu file CSV untuk pembagian dataset
+            selected_train_dataset = "train_70_rasio_100.csv"  # Ganti dengan file yang diinginkan
+            selected_test_dataset = "test_30_rasio_100.csv"  # Ganti dengan file yang diinginkan
 
-            ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
+            # Memuat dataset pelatihan
+            train_dataset = pd.read_csv(selected_train_dataset)
 
-            with open('tfidf.pkl', 'rb') as file:
-                loaded_data_tfid = pickle.load(file)
-            tf_idf_baru = loaded_data_tfid.fit_transform(ulasan_dataset_preprocessed)
+            # Menangani nilai yang hilang
+            train_dataset = train_dataset.dropna()
 
-            # Manual pembagian dataset
-            total_data = len(ulasan_dataset)
-            train_size = int(total_data * 0.9)
-            
-            X_train = tf_idf_baru[:train_size]
-            y_train = sentimen[:train_size]
-            
-            X_test = tf_idf_baru[train_size:]
-            y_test = sentimen[train_size:]
+            # Ekstrak fitur (X_train) dan label (y_train)
+            X_train = train_dataset.drop('label', axis=1)
+            y_train = train_dataset['label']
 
+            # Memuat dataset uji
+            test_dataset = pd.read_csv(selected_test_dataset)
+
+            # Menangani nilai yang hilang
+            test_dataset = test_dataset.dropna()
+
+            # Ekstrak fitur (X_test) dan label (y_test)
+            X_test = test_dataset.drop('label', axis=1)
+            y_test = test_dataset['label']
+
+            # Inisialisasi TfidfVectorizer
+            tfidf_vectorizer = TfidfVectorizer()
+
+            # Transformasi TF-IDF pada dataset pelatihan dan uji
+            tf_idf_train = tfidf_vectorizer.fit_transform(X_train)
+            tf_idf_test = tfidf_vectorizer.transform(X_test)
+
+            # Melatih model SVM
             svm_clf = SVC()
-            svm_clf.fit(X_train, y_train)
+            svm_clf.fit(tf_idf_train, y_train)
 
-            y_pred = svm_clf.predict(X_test)
-
+            # Melakukan prediksi pada data uji
             preprocessed_text = preprocessing_data(text)
-            v_data = loaded_data_tfid.transform([preprocessed_text])
+            v_data = tfidf_vectorizer.transform([preprocessed_text])
             y_preds = svm_clf.predict(v_data)
 
             st.subheader('Prediksi:')
