@@ -139,7 +139,7 @@ with st.container():
 
         # Menambah legenda, judul, dan label sumbu
         ax.legend()
-        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Bulan di Tahun 2023')
+        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Bulan di Tahun 2019')
         ax.set_xlabel('Bulan')
         ax.set_ylabel('Jumlah')
 
@@ -304,7 +304,7 @@ with st.container():
 
         # Menambah legenda, judul, dan label sumbu
         ax.legend()
-        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Bulan di Tahun 2019')
+        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Bulan di Tahun 2023')
         ax.set_xlabel('Bulan')
         ax.set_ylabel('Jumlah')
 
