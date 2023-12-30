@@ -10,8 +10,8 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
-import pickle
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -234,6 +234,11 @@ with st.container():
                 st.success('Positif')
             else:
                 st.error('Negatif')
+
+            # Menghitung dan menampilkan akurasi
+            y_test_preds = svm_clf.predict(tf_idf_test)
+            accuracy = accuracy_score(y_test, y_test_preds)
+            st.subheader(f'Akurasi Model: {accuracy:.2%}')
 
     elif selected == "Tentang Kami":
         st.write("#####  Skripsi") 
