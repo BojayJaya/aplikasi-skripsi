@@ -203,12 +203,18 @@ with st.container():
             # Memuat dataset pelatihan
             train_dataset = pd.read_csv(selected_train_dataset)
 
+            # Menangani nilai yang hilang
+            train_dataset = train_dataset.dropna()
+
             # Ekstrak fitur (X_train) dan label (y_train)
             X_train = train_dataset.drop('label', axis=1)
             y_train = train_dataset['label']
 
             # Memuat dataset uji
             test_dataset = pd.read_csv(selected_test_dataset)
+
+            # Menangani nilai yang hilang
+            test_dataset = test_dataset.dropna()
 
             # Ekstrak fitur (X_test) dan label (y_test)
             X_test = test_dataset.drop('label', axis=1)
