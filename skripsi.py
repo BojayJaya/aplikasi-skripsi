@@ -149,10 +149,9 @@ with st.container():
         # Tampilkan plot
         st.pyplot(fig)
 
-        # Bulan di tahun 2020
         bulan = {'Bulan': ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
                 'Positif': [2, 4, 5, 7, 4, 5, 4, 5, 2, 9, 12, 9],
-                'Negatif': [3, 5, 9, 5, 6, 11, 8,7, 8, 15, 10, 13]}
+                'Negatif': [3, 5, 9, 5, 6, 11, 8, 7, 8, 15, 10, 13]}
 
         df_bulan = pd.DataFrame(bulan)
 
@@ -181,6 +180,9 @@ with st.container():
         ax.set_title('Grafik Total Label Positif dan Negatif Setiap Bulan di Tahun 2020')
         ax.set_xlabel('Bulan')
         ax.set_ylabel('Jumlah')
+
+        # Menyesuaikan rotasi label bulan
+        plt.xticks(rotation=45, ha='right')
 
         # Menyesuaikan margin atas agar tidak terpotong
         plt.subplots_adjust(top=0.9)
