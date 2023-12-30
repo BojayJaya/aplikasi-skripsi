@@ -156,6 +156,22 @@ with st.container():
         st.write("""<h6 style="text-align: center;">Grafik Total Label Positif dan Negatif Setiap Tahun</h6>""", unsafe_allow_html=True)
 
         st.bar_chart(df_tahun.set_index('Tahun'), height=300)
+        # Sample data
+        tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
+                'Positif': [45, 50, 55, 60, 65],
+                'Negatif': [42, 41, 38, 45, 47]}
+
+        df_tahun = pd.DataFrame(tahun)
+
+        # Display two bar charts for each year
+        for i, row in df_tahun.iterrows():
+            st.write(f"## Tahun {row['Tahun']}")
+
+            # Bar chart for positive labels
+            st.bar_chart(row['Positif'], use_container_width=True)
+
+            # Bar chart for negative labels
+            st.bar_chart(row['Negatif'], use_container_width=True)
 
     elif selected == "Akurasi":
 
