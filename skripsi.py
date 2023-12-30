@@ -1,5 +1,6 @@
 from streamlit_option_menu import option_menu
 import streamlit as st
+import matplotlib.pyplot as plt
 import pandas as pd
 import  re
 import string
@@ -109,30 +110,46 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Sentimen":
-        st.subheader("Analisis Sentimen")
 
-        # Membaca dataset sentimen dari file CSV
-        sentimen_data = pd.read_csv("sentimen.csv")
+        # Mendapatkan daftar tahun yang unik
+        unique_years = result.index.get_level_values('tahun').unique()
 
-        # Menampilkan beberapa baris pertama dari dataset untuk debugging
-        st.write("Data Sentimen:", sentimen_data.head())
+        # Menentukan lebar bar
+        bar_width = 0.35
 
-        # Dropdown untuk memilih tahun
-        selected_year = st.sidebar.selectbox("Pilih Tahun", sentimen_data['tahun'].unique())
-        selected_year = int(selected_year)  # Ubah ke tipe data integer
+        # Iterasi melalui setiap tahun dan membuat subplot
+        for i, year in enumerate(unique_years):
+            year_data = result.loc[year]
 
-        # Pastikan tahun yang dipilih ada dalam dataset
-        if selected_year not in sentimen_data['tahun'].unique():
-            st.error("Tahun yang dipilih tidak valid. Silakan pilih tahun lain.")
-        else:
-            # Membuat filter berdasarkan tahun yang dipilih
-            year_data = sentimen_data[sentimen_data['tahun'] == selected_year]
+            index = np.arange(len(year_data))
 
-            # Menghitung jumlah positif dan negatif setiap bulan
-            monthly_sentiment = year_data.groupby(['bulan', 'label']).size().unstack(fill_value=0)
+            # Plotting bar chart untuk label positif
+            plt.bar(index, year_data['total_label_positif'], bar_width, label='Positif')
 
-            # Menampilkan grafik bar chart untuk label positif dan negatif
-            st.bar_chart(monthly_sentiment[['Positif', 'Negatif']])
+            # Plotting bar chart untuk label negatif
+            plt.bar(index + bar_width, year_data['total_label_negatif'], bar_width, label='Negatif')
+
+            # Menambahkan teks di atas bar chart
+            for rect in plt.gca().patches:
+                height = rect.get_height()
+                plt.gca().text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
+
+            # Menambahkan label dan judul
+            plt.xlabel('Bulan')
+            plt.ylabel('Jumlah')
+            plt.title(f'Grafik untuk Label Positif dan Negatif Tahun {year} setiap bulannya')
+
+            # Menambahkan ticks label di sumbu x
+            plt.xticks(index + bar_width / 2, year_data.index.get_level_values('nama_bulan'), ha='right')
+
+            # Tampilkan legenda
+            plt.legend(title='Label', loc='upper right')
+
+            # Menyesuaikan layout agar label tidak terpotong
+            plt.tight_layout()
+
+            # Menampilkan grafik menggunakan Streamlit
+            st.pyplot()
 
     elif selected == "Akurasi":
 
