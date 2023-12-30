@@ -149,6 +149,45 @@ with st.container():
         # Tampilkan plot
         st.pyplot(fig)
 
+        # Bulan di tahun 2020
+        bulan = {'Bulan': ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+                'Positif': [2, 4, 5, 7, 4, 5, 4, 5, 2, 9, 12, 9],
+                'Negatif': [3, 5, 9, 5, 6, 11, 8,7, 8, 15, 10, 13]}
+
+        df_bulan = pd.DataFrame(bulan)
+
+        # Set style
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+
+        # Plotting
+        fig, ax = plt.subplots(figsize=(10, 6))
+
+        # Bar chart untuk Positif (hijau)
+        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
+
+        # Menambah total label positif di atas batang positif
+        for i, value in enumerate(df_bulan['Positif']):
+            ax.text(i + 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
+
+        # Bar chart untuk Negatif (merah)
+        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
+
+        # Menambah total label negatif di atas batang negatif
+        for i, value in enumerate(df_bulan['Negatif']):
+            ax.text(i - 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
+
+        # Menambah legenda, judul, dan label sumbu
+        ax.legend()
+        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Bulan di Tahun 2020')
+        ax.set_xlabel('Bulan')
+        ax.set_ylabel('Jumlah')
+
+        # Menyesuaikan margin atas agar tidak terpotong
+        plt.subplots_adjust(top=0.9)
+
+        # Tampilkan plot
+        st.pyplot(fig)
+
         # TAHUN
         tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
                 'Positif': [9, 68, 117, 183, 23],
