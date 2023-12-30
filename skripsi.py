@@ -157,20 +157,24 @@ with st.container():
 
         # st.bar_chart(df_tahun.set_index('Tahun'), height=300)
 
+        # Sample data
         tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
                 'Positif': [45, 50, 55, 60, 65],
                 'Negatif': [42, 41, 38, 45, 47]}
 
         df_tahun = pd.DataFrame(tahun)
 
-        # Display bar charts for positive and negative labels for each year
+        # Display two side-by-side bar charts for positive and negative labels for each year
         st.write("""<h6 style="text-align: center;">Grafik Total Label Positif dan Negatif Setiap Tahun</h6>""", unsafe_allow_html=True)
 
-        # Bar chart for positive labels
-        st.bar_chart(df_tahun.set_index('Tahun')['Positif'], use_container_width=True)
+        # Create a two-column layout
+        col1, col2 = st.beta_columns(2)
 
-        # Bar chart for negative labels
-        st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], use_container_width=True)
+        # Bar chart for positive labels in the left column with green color
+        col1.bar_chart(df_tahun.set_index('Tahun')['Positif'], use_container_width=True, color='green')
+
+        # Bar chart for negative labels in the right column with red color
+        col2.bar_chart(df_tahun.set_index('Tahun')['Negatif'], use_container_width=True, color='red')
 
     elif selected == "Akurasi":
 
