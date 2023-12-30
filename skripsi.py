@@ -157,29 +157,26 @@ with st.container():
 
         # st.bar_chart(df_tahun.set_index('Tahun'), height=300)
 
-        # Sample data
         tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
-                'Positif': [45, 50, 55, 60, 65],
-                'Negatif': [42, 41, 38, 45, 47]}
+                'Positif': [87, 91, 93, 89, 89],
+                'Negatif': [13, 9, 7, 11, 11]}
 
         df_tahun = pd.DataFrame(tahun)
 
-        # Display two side-by-side bar charts for positive and negative labels for each year
-        st.write("""<h6 style="text-align: center;">Grafik Total Label Positif dan Negatif Setiap Tahun</h6>""", unsafe_allow_html=True)
+        # Set style
+        st.set_option('deprecation.showPyplotGlobalUse', False)
 
-        # Create a two-column layout
-        col1, col2 = st.beta_columns(2)
+        # Plotting
+        st.bar_chart(df_tahun.set_index('Tahun'))
 
-        # Function to create a bar chart with custom colors
-        def create_bar_chart(data, label, color, col):
-            col.bar_chart(data.set_index('Tahun')[label], use_container_width=True, color=color)
-            col.subheader(f'Grafik Total Label {label} Setiap Tahun')
+        # Bar chart kiri untuk Positif (hijau)
+        positif_bar = st.bar_chart(df_tahun.set_index('Tahun')['Positif'], color='green')
 
-        # Create bar chart for positive labels with green color
-        create_bar_chart(df_tahun, 'Positif', 'green', col1)
+        # Bar chart kanan untuk Negatif (merah)
+        negatif_bar = st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], color='red', use_container_width=True)
 
-        # Create bar chart for negative labels with red color
-        create_bar_chart(df_tahun, 'Negatif', 'red', col2)
+        # Tampilkan plot
+        st.pyplot()
 
     elif selected == "Akurasi":
 
