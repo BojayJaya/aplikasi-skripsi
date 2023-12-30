@@ -9,7 +9,7 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 import pickle
 import warnings
@@ -197,31 +197,43 @@ with st.container():
                 # Menggabungkan token kembali menjadi satu string
                 return ' '.join(text)
 
+            # Load the preprocessed dataset
             Dt_Ujm = pd.read_csv("dt_stlh_p.csv")
             ulasan_dataset = Dt_Ujm['ulasan']
             sentimen = Dt_Ujm['label']
 
+            # Preprocess the entire dataset
             ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
 
+            # Load the TF-IDF model
             with open('tfidf.pkl', 'rb') as file:
                 loaded_data_tfid = pickle.load(file)
-            tf_idf_baru = loaded_data_tfid.fit_transform(ulasan_dataset_preprocessed)
 
-            # Manual pembagian dataset
+            # Transform the entire preprocessed dataset using the TF-IDF model
+            tf_idf_baru = loaded_data_tfid.transform(ulasan_dataset_preprocessed)
+
+            # Manual dataset splitting
             total_data = len(ulasan_dataset)
             train_size = int(total_data * 0.9)
-            
+
             X_train = tf_idf_baru[:train_size]
             y_train = sentimen[:train_size]
-            
+
             X_test = tf_idf_baru[train_size:]
             y_test = sentimen[train_size:]
 
+            # Train the SVM model
             svm_clf = SVC()
             svm_clf.fit(X_train, y_train)
 
+            # Predictions on the test set
             y_pred = svm_clf.predict(X_test)
 
+            # Compute and display accuracy
+            accuracy = accuracy_score(y_test, y_pred)
+            st.write(f'Akurasi Model: {accuracy * 100:.2f}%')
+
+            # Preprocess user-inputted text and make predictions
             preprocessed_text = preprocessing_data(text)
             v_data = loaded_data_tfid.transform([preprocessed_text])
             y_preds = svm_clf.predict(v_data)
