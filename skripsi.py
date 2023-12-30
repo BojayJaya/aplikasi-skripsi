@@ -168,25 +168,27 @@ with st.container():
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
         # Plotting
-        fig, axes = plt.subplots(nrows=2, figsize=(10, 10))
+        fig, ax = plt.subplots(figsize=(10, 6))
 
         # Bar chart untuk Positif (hijau)
-        axes[0].bar(df_tahun['Tahun'], df_tahun['Positif'], color='green')
-        for i, value in enumerate(df_tahun['Positif']):
-            axes[0].text(i, value + 1, str(value), ha='center', va='bottom')
+        ax.bar(df_tahun['Tahun'], df_tahun['Positif'], color='green', label='Positif', align='edge', width=0.4)
 
-        axes[0].set_title('Grafik Total Label Positif Setiap Tahun')
-        axes[0].set_xlabel('Tahun')
-        axes[0].set_ylabel('Jumlah')
+        # Menambah total label positif di atas batang positif
+        for i, value in enumerate(df_tahun['Positif']):
+            ax.text(i + 0.2, value + 1, str(value), ha='center', va='bottom', color='black')
 
         # Bar chart untuk Negatif (merah)
-        axes[1].bar(df_tahun['Tahun'], df_tahun['Negatif'], color='red')
-        for i, value in enumerate(df_tahun['Negatif']):
-            axes[1].text(i, value + 1, str(value), ha='center', va='bottom')
+        ax.bar(df_tahun['Tahun'], df_tahun['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
 
-        axes[1].set_title('Grafik Total Label Negatif Setiap Tahun')
-        axes[1].set_xlabel('Tahun')
-        axes[1].set_ylabel('Jumlah')
+        # Menambah total label negatif di atas batang negatif
+        for i, value in enumerate(df_tahun['Negatif']):
+            ax.text(i - 0.2, value + 1, str(value), ha='center', va='bottom', color='black')
+
+        # Menambah legenda, judul, dan label sumbu
+        ax.legend()
+        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Tahun')
+        ax.set_xlabel('Tahun')
+        ax.set_ylabel('Jumlah')
 
         # Tampilkan plot
         st.pyplot(fig)
