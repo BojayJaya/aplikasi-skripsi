@@ -166,17 +166,11 @@ with st.container():
         # Set style
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
-        # Plotting
-        st.bar_chart(df_tahun.set_index('Tahun'))
-
         # Bar chart kiri untuk Positif (hijau)
-        positif_bar = st.bar_chart(df_tahun.set_index('Tahun')['Positif'], color='green')
+        st.bar_chart(df_tahun.set_index('Tahun')['Positif'], use_container_width=True, color='green')
 
         # Bar chart kanan untuk Negatif (merah)
-        negatif_bar = st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], color='red', use_container_width=True)
-
-        # Tampilkan plot
-        st.pyplot()
+        st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], use_container_width=True, color='red')
 
     elif selected == "Akurasi":
 
