@@ -164,7 +164,6 @@ with st.container():
             st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h6>""", unsafe_allow_html=True)
             st.bar_chart(df_akurasi_100.set_index('Pembagian Dataset'), height=300)
 
-        
     elif selected == "Implementation":
         text = st.text_area('Masukkan kata yang akan di analisa:')
         submit = st.button("Submit")
@@ -195,29 +194,40 @@ with st.container():
                 stemmer = PorterStemmer()
                 text = [stemmer.stem(token) for token in text]
 
-                # Joining the tokens back into a single string
+                # Menggabungkan token kembali menjadi satu string
                 return ' '.join(text)
 
-            Dt_Ujm = pd.read_csv("dt_stlh_p.csv")
-            ulasan_dataset = Dt_Ujm['ulasan']
-            sentimen = Dt_Ujm['label']
+            # Pilih salah satu file CSV untuk pembagian dataset
+            selected_train_dataset = "train_90_rasio_25.csv"  # Ganti dengan file yang diinginkan
+            selected_test_dataset = "test_10_rasio_25.csv"  # Ganti dengan file yang diinginkan
 
-            ulasan_dataset_preprocessed = [preprocessing_data(ulasan) for ulasan in ulasan_dataset]
+            # Memuat dataset pelatihan
+            train_dataset = pd.read_csv(selected_train_dataset)
+
+            # Ekstrak fitur (X_train) dan label (y_train)
+            X_train = train_dataset.drop('label', axis=1)
+            y_train = train_dataset['label']
+
+            # Memuat dataset uji
+            test_dataset = pd.read_csv(selected_test_dataset)
+
+            # Ekstrak fitur (X_test) dan label (y_test)
+            X_test = test_dataset.drop('label', axis=1)
+            y_test = test_dataset['label']
 
             with open('tfidf.pkl', 'rb') as file:
                 loaded_data_tfid = pickle.load(file)
-            tf_idf_baru = loaded_data_tfid.fit_transform(ulasan_dataset_preprocessed)
 
-            X_train, X_test, y_train, y_test = train_test_split(tf_idf_baru, sentimen, test_size=0.1, random_state=42)
+            # Transformasi TF-IDF pada dataset pelatihan dan uji
+            tf_idf_train = loaded_data_tfid.transform(X_train)
+            tf_idf_test = loaded_data_tfid.transform(X_test)
 
-            svm_clf = SVC(kernel='linear')
-            svm_clf.fit(X_train, y_train)
+            # Melatih model SVM
+            svm_clf = SVC()
+            svm_clf.fit(tf_idf_train, y_train)
 
-            y_pred = svm_clf.predict(X_test)
-
-            preprocessed_text = preprocessing_data(text)
-            v_data = loaded_data_tfid.transform([preprocessed_text])
-            y_preds = svm_clf.predict(v_data)
+            # Melakukan prediksi pada data uji
+            y_preds = svm_clf.predict(tf_idf_test)
 
             st.subheader('Prediksi:')
             if y_preds[0] == "positif":
