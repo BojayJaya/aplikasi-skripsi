@@ -113,7 +113,8 @@ with st.container():
     elif selected == "Sentimen":
         st.subheader("Analisis Sentimen")
 
-        sentimen_file_path = pd.read_csv("sentimen.csv")
+        # Ganti 'sentimen.csv' dengan nama file CSV yang sesuai
+        sentimen_file_path = 'sentimen.csv'
 
         # Membaca dataset sentimen dari file CSV
         sentimen_data = pd.read_csv(sentimen_file_path)
@@ -151,7 +152,7 @@ with st.container():
         plt.tight_layout()
 
         # Show the plot
-        plt.show()
+        st.pyplot(plt)
 
     elif selected == "Akurasi":
 
