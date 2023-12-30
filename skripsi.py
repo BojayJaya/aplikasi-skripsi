@@ -144,7 +144,7 @@ with st.container():
         ax.set_ylabel('Jumlah')
 
         # Tampilkan plot
-st.pyplot(fig)
+        st.pyplot(fig)
 
         # TAHUN
         tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
