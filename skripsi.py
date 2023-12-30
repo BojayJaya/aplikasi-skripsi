@@ -126,51 +126,50 @@ with st.container():
         # Pastikan tahun yang dipilih ada dalam dataset
         if selected_year not in sentimen_data['tahun'].unique():
             st.error("Tahun yang dipilih tidak valid. Silakan pilih tahun lain.")
-            st.stop()  # Stop eksekusi skrip jika terdapat error
+        else:
+            # Membuat filter berdasarkan tahun yang dipilih
+            year_data = sentimen_data[sentimen_data['tahun'] == selected_year]
 
-        # Membuat filter berdasarkan tahun yang dipilih
-        year_data = sentimen_data[sentimen_data['tahun'] == selected_year]
+            # Menentukan lebar bar
+            bar_width = 0.35
 
-        # Menentukan lebar bar
-        bar_width = 0.35
+            # Membuat subplot
+            fig, ax = plt.subplots(figsize=(14, 6))
 
-        # Membuat subplot
-        fig, ax = plt.subplots(figsize=(14, 6))
+            index = np.arange(len(year_data))
 
-        index = np.arange(len(year_data))
+            # Plotting bar chart untuk label positif
+            bar1 = ax.bar(index, year_data['total_label_positif'], bar_width, label='Positif')
 
-        # Plotting bar chart untuk label positif
-        bar1 = ax.bar(index, year_data['total_label_positif'], bar_width, label='Positif')
+            # Plotting bar chart untuk label negatif
+            bar2 = ax.bar(index + bar_width, year_data['total_label_negatif'], bar_width, label='Negatif')
 
-        # Plotting bar chart untuk label negatif
-        bar2 = ax.bar(index + bar_width, year_data['total_label_negatif'], bar_width, label='Negatif')
+            # Menambahkan teks di atas bar chart
+            for rect in bar1:
+                height = rect.get_height()
+                ax.text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
 
-        # Menambahkan teks di atas bar chart
-        for rect in bar1:
-            height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
+            for rect in bar2:
+                height = rect.get_height()
+                ax.text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
 
-        for rect in bar2:
-            height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
+            # Menambahkan label dan judul
+            ax.set_xlabel('Bulan')
+            ax.set_ylabel('Jumlah')
+            ax.set_title(f'Grafik untuk Label Positif dan Negatif Tahun {selected_year} setiap bulannya')
 
-        # Menambahkan label dan judul
-        ax.set_xlabel('Bulan')
-        ax.set_ylabel('Jumlah')
-        ax.set_title(f'Grafik untuk Label Positif dan Negatif Tahun {selected_year} setiap bulannya')
+            # Menambahkan ticks label di sumbu x
+            ax.set_xticks(index + bar_width / 2)
+            ax.set_xticklabels(year_data['nama_bulan'], ha='right')
 
-        # Menambahkan ticks label di sumbu x
-        ax.set_xticks(index + bar_width / 2)
-        ax.set_xticklabels(year_data['nama_bulan'], ha='right')
+            # Tampilkan legenda
+            ax.legend(title='Label', loc='upper right')
 
-        # Tampilkan legenda
-        ax.legend(title='Label', loc='upper right')
+            # Menyesuaikan layout agar label tidak terpotong
+            plt.tight_layout()
 
-        # Menyesuaikan layout agar label tidak terpotong
-        plt.tight_layout()
-
-        # Menampilkan grafik menggunakan Streamlit
-        st.pyplot(fig)
+            # Menampilkan grafik menggunakan Streamlit
+            st.pyplot(fig)
 
     elif selected == "Akurasi":
 
