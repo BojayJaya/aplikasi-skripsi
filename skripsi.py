@@ -199,11 +199,21 @@ with st.container():
             selected_test_dataset = "test_30_rasio_100.csv"
 
             train_dataset = pd.read_csv(selected_train_dataset).dropna()
-            X_train = train_dataset[['ulasan']] if 'ulasan' in train_dataset.columns else train_dataset[['NamaKolomUlasanLain']]  # Gantilah 'NamaKolomUlasanLain' dengan nama kolom yang sesuai
+            X_train = train_dataset[['ulasan']]
+            
+            if 'ulasan' not in train_dataset.columns or X_train.empty:
+                st.error('Kolom "ulasan" tidak ditemukan dalam dataset pelatihan atau dataset pelatihan kosong. Periksa struktur dataset Anda.')
+                st.stop()
+
             y_train = train_dataset['label']
 
             test_dataset = pd.read_csv(selected_test_dataset).dropna()
-            X_test = test_dataset[['ulasan']] if 'ulasan' in test_dataset.columns else test_dataset[['NamaKolomUlasanLain']]  # Gantilah 'NamaKolomUlasanLain' dengan nama kolom yang sesuai
+            X_test = test_dataset[['ulasan']]
+
+            if 'ulasan' not in test_dataset.columns or X_test.empty:
+                st.error('Kolom "ulasan" tidak ditemukan dalam dataset uji atau dataset uji kosong. Periksa struktur dataset Anda.')
+                st.stop()
+
             y_test = test_dataset['label']
 
             tfidf_vectorizer = TfidfVectorizer()
