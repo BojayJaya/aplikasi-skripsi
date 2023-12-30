@@ -172,6 +172,9 @@ with st.container():
         # Bar chart kanan untuk Negatif (merah)
         st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], use_container_width=True, color='red')
 
+        # Tampilkan plot
+        st.pyplot()
+
     elif selected == "Akurasi":
 
         # Menyusun data ke dalam DataFrame
