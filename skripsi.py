@@ -109,7 +109,6 @@ with st.container():
         dt_stlh_p = pd.read_csv("dt_stlh_p.csv")
         st.write(dt_stlh_p)
 
-    # Tambahan opsi untuk Sentimen
     elif selected == "Sentimen":
         st.subheader("Analisis Sentimen")
 
@@ -118,6 +117,9 @@ with st.container():
 
         # Membaca dataset sentimen dari file CSV
         sentimen_data = pd.read_csv(sentimen_file_path)
+
+        # Print column names for debugging
+        st.write("Column Names:", sentimen_data.columns)
 
         # Menentukan lebar bar
         bar_width = 0.35
