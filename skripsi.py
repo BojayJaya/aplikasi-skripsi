@@ -1,6 +1,5 @@
 from streamlit_option_menu import option_menu
 import streamlit as st
-import matplotlib.pyplot as plt
 import pandas as pd
 import  re
 import string
@@ -111,45 +110,58 @@ with st.container():
 
     elif selected == "Sentimen":
 
-        # Mendapatkan daftar tahun yang unik
-        unique_years = result.index.get_level_values('tahun').unique()
+        # Menyusun data ke dalam DataFrame
+        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+                'Akurasi': [87, 91, 93, 89]}
 
-        # Menentukan lebar bar
-        bar_width = 0.35
+        df_akurasi = pd.DataFrame(data)
+        # Mengubah nilai akurasi ke dalam format persen
+        # df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: f'{x*100:.2f}%')
 
-        # Iterasi melalui setiap tahun dan membuat subplot
-        for i, year in enumerate(unique_years):
-            year_data = result.loc[year]
+        # Menampilkan judul grafik
+        st.write("""<h6 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h6>""", unsafe_allow_html=True)
 
-            index = np.arange(len(year_data))
+        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
 
-            # Plotting bar chart untuk label positif
-            plt.bar(index, year_data['total_label_positif'], bar_width, label='Positif')
+        # Menyusun data ke dalam DataFrame
+        data_25 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+                'Akurasi': [76, 84, 85, 83]}
+        df_akurasi_25 = pd.DataFrame(data_25)
 
-            # Plotting bar chart untuk label negatif
-            plt.bar(index + bar_width, year_data['total_label_negatif'], bar_width, label='Negatif')
+        data_50 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+                'Akurasi': [90, 92, 94, 87]}
+        df_akurasi_50 = pd.DataFrame(data_50)
 
-            # Menambahkan teks di atas bar chart
-            for rect in plt.gca().patches:
-                height = rect.get_height()
-                plt.gca().text(rect.get_x() + rect.get_width() / 2, height, f'{height}', ha='center', va='bottom')
+        data_75 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+                'Akurasi': [93, 92, 90, 89]}
+        df_akurasi_75 = pd.DataFrame(data_75)
 
-            # Menambahkan label dan judul
-            plt.xlabel('Bulan')
-            plt.ylabel('Jumlah')
-            plt.title(f'Grafik untuk Label Positif dan Negatif Tahun {year} setiap bulannya')
+        data_100 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
+                    'Akurasi': [91, 91, 94, 90]}
+        df_akurasi_100 = pd.DataFrame(data_100)
 
-            # Menambahkan ticks label di sumbu x
-            plt.xticks(index + bar_width / 2, year_data.index.get_level_values('nama_bulan'), ha='right')
+        # Membuat layout kolom
+        col1, col2 = st.columns(2)
 
-            # Tampilkan legenda
-            plt.legend(title='Label', loc='upper right')
+        # Menampilkan chart untuk rasio seleksi fitur 25% di kiri atas
+        with col1:
+            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 25%)</h6>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_25.set_index('Pembagian Dataset'), height=300)
 
-            # Menyesuaikan layout agar label tidak terpotong
-            plt.tight_layout()
+        # Menampilkan chart untuk rasio seleksi fitur 50% di kanan atas
+        with col2:
+            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 50%)</h6>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_50.set_index('Pembagian Dataset'), height=300)
 
-            # Menampilkan grafik menggunakan Streamlit
-            st.pyplot()
+        # Menampilkan chart untuk rasio seleksi fitur 75% di kiri bawah
+        with col1:
+            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 75%)</h6>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_75.set_index('Pembagian Dataset'), height=300)
+
+        # Menampilkan chart untuk rasio seleksi fitur 100% di kanan bawah
+        with col2:
+            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h6>""", unsafe_allow_html=True)
+            st.bar_chart(df_akurasi_100.set_index('Pembagian Dataset'), height=300)
 
     elif selected == "Akurasi":
 
