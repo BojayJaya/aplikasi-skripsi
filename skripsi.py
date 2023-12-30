@@ -110,46 +110,42 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Sentimen":
-        # Menyusun data ke dalam DataFrame
-        data_25 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [76, 84, 85, 83]}
-        df_akurasi_25 = pd.DataFrame(data_25)
+        # Bulan di Tahun 2019
+        bulan = {'Bulan': ['Agustus', 'September', 'Oktober', 'November', 'Desember'],
+                'Positif': [1, 2, 2, 4, 0],
+                'Negatif': [0, 1, 3, 5, 1]}
 
-        data_50 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [90, 92, 94, 87]}
-        df_akurasi_50 = pd.DataFrame(data_50)
+        df_bulan = pd.DataFrame(bulan)
 
-        data_75 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [93, 92, 90, 89]}
-        df_akurasi_75 = pd.DataFrame(data_75)
+        # Set style
+        st.set_option('deprecation.showPyplotGlobalUse', False)
 
-        data_100 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                    'Akurasi': [91, 91, 94, 90]}
-        df_akurasi_100 = pd.DataFrame(data_100)
+        # Plotting
+        fig, ax = plt.subplots(figsize=(10, 6))
 
-        # Membuat layout kolom
-        col1, col2 = st.columns(2)
+        # Bar chart untuk Positif (hijau)
+        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
 
-        # Menampilkan chart untuk rasio seleksi fitur 25% di kiri atas
-        with col1:
-            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 25%)</h6>""", unsafe_allow_html=True)
-            st.bar_chart(df_akurasi_25.set_index('Pembagian Dataset'), height=300)
+        # Menambah total label positif di atas batang positif
+        for i, value in enumerate(df_bulan['Positif']):
+            ax.text(i + 0.2, value + 1, str(value), ha='center', va='bottom', color='black')
 
-        # Menampilkan chart untuk rasio seleksi fitur 50% di kanan atas
-        with col2:
-            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 50%)</h6>""", unsafe_allow_html=True)
-            st.bar_chart(df_akurasi_50.set_index('Pembagian Dataset'), height=300)
+        # Bar chart untuk Negatif (merah)
+        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
 
-        # Menampilkan chart untuk rasio seleksi fitur 75% di kiri bawah
-        with col1:
-            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 75%)</h6>""", unsafe_allow_html=True)
-            st.bar_chart(df_akurasi_75.set_index('Pembagian Dataset'), height=300)
+        # Menambah total label negatif di atas batang negatif
+        for i, value in enumerate(df_bulan['Negatif']):
+            ax.text(i - 0.2, value + 1, str(value), ha='center', va='bottom', color='black')
 
-        # Menampilkan chart untuk rasio seleksi fitur 100% di kanan bawah
-        with col2:
-            st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h6>""", unsafe_allow_html=True)
-            st.bar_chart(df_akurasi_100.set_index('Pembagian Dataset'), height=300)
-        
+        # Menambah legenda, judul, dan label sumbu
+        ax.legend()
+        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Bulan di Tahun 2019')
+        ax.set_xlabel('Bulan')
+        ax.set_ylabel('Jumlah')
+
+        # Tampilkan plot
+        st.pyplot(fig)
+
         # TAHUN
         tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
                 'Positif': [9, 68, 117, 183, 23],
