@@ -214,7 +214,7 @@ with st.container():
 
             # Manual dataset splitting
             total_data = len(ulasan_dataset)
-            train_size = int(total_data * 0.9)
+            train_size = int(total_data * 0.8)
 
             X_train = tf_idf_baru[:train_size]
             y_train = sentimen[:train_size]
