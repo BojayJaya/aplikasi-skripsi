@@ -164,12 +164,12 @@ with st.container():
 
         df_tahun = pd.DataFrame(tahun)
 
-        # Display two bar charts for each year
+        # Display line chart for each year
         for i, row in df_tahun.iterrows():
             st.write(f"## Tahun {row['Tahun']}")
 
-            # Bar chart for positive and negative labels
-            st.bar_chart({"Positif": row['Positif'], "Negatif": row['Negatif']}, use_container_width=True)
+            # Line chart for positive and negative labels
+            st.line_chart({"Positif": row['Positif'], "Negatif": row['Negatif']}, use_container_width=True)
 
     elif selected == "Akurasi":
 
