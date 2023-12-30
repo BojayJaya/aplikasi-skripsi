@@ -1,5 +1,6 @@
 from streamlit_option_menu import option_menu
 import streamlit as st
+import matplotlib.pyplot as plt
 import pandas as pd
 import  re
 import string
@@ -166,11 +167,23 @@ with st.container():
         # Set style
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
+        # Plotting
+        fig, ax = plt.subplots(figsize=(10, 6))
+
         # Bar chart untuk Positif (hijau)
-        st.bar_chart(df_tahun.set_index('Tahun')['Positif'], use_container_width=True, color='green')
+        ax.bar(df_tahun['Tahun'], df_tahun['Positif'], color='green', label='Positif')
 
         # Bar chart untuk Negatif (merah)
-        st.bar_chart(df_tahun.set_index('Tahun')['Negatif'], use_container_width=True, color='red')
+        ax.bar(df_tahun['Tahun'], df_tahun['Negatif'], color='red', label='Negatif', alpha=0.7)
+
+        # Menambah legenda, judul, dan label sumbu
+        ax.legend()
+        ax.set_title('Grafik Total Label Positif dan Negatif Setiap Tahun')
+        ax.set_xlabel('Tahun')
+        ax.set_ylabel('Jumlah')
+
+        # Tampilkan plot
+        st.pyplot(fig)
 
     elif selected == "Akurasi":
 
