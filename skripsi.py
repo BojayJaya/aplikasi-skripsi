@@ -128,11 +128,11 @@ with st.container():
             # Membuat filter berdasarkan tahun yang dipilih
             year_data = sentimen_data[sentimen_data['tahun'] == selected_year]
 
+            # Menghitung jumlah positif dan negatif setiap bulan
+            monthly_sentiment = year_data.groupby('bulan')['label'].value_counts().unstack().fillna(0)
+
             # Menampilkan grafik bar chart untuk label positif dan negatif
-            st.bar_chart({
-                'Positif': year_data['total_label_positif'],
-                'Negatif': year_data['total_label_negatif']
-            })
+            st.bar_chart(monthly_sentiment[['Positif', 'Negatif']])
 
     elif selected == "Akurasi":
 
