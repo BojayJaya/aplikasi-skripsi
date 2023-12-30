@@ -199,11 +199,11 @@ with st.container():
             selected_test_dataset = "test_30_rasio_100.csv"
 
             train_dataset = pd.read_csv(selected_train_dataset).dropna()
-            X_train = train_dataset.drop('label', axis=1)
+            X_train = train_dataset[['ulasan']]  # Menggunakan DataFrame dengan kolom 'ulasan' saja
             y_train = train_dataset['label']
 
             test_dataset = pd.read_csv(selected_test_dataset).dropna()
-            X_test = test_dataset.drop('label', axis=1)
+            X_test = test_dataset[['ulasan']]  # Menggunakan DataFrame dengan kolom 'ulasan' saja
             y_test = test_dataset['label']
 
             tfidf_vectorizer = TfidfVectorizer()
