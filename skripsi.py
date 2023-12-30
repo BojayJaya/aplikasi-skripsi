@@ -198,8 +198,8 @@ with st.container():
                 return ' '.join(text)
 
             # Pilih salah satu file CSV untuk pembagian dataset
-            selected_train_dataset = "train_90_rasio_25.csv"  # Ganti dengan file yang diinginkan
-            selected_test_dataset = "test_10_rasio_25.csv"  # Ganti dengan file yang diinginkan
+            selected_train_dataset = "train_70_rasio_100.csv"  # Ganti dengan file yang diinginkan
+            selected_test_dataset = "test_30_rasio_100.csv"  # Ganti dengan file yang diinginkan
 
             # Memuat dataset pelatihan
             train_dataset = pd.read_csv(selected_train_dataset)
