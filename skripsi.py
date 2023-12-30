@@ -109,20 +109,6 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Sentimen":
-
-        # Menyusun data ke dalam DataFrame
-        data = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
-                'Akurasi': [87, 91, 93, 89]}
-
-        df_akurasi = pd.DataFrame(data)
-        # Mengubah nilai akurasi ke dalam format persen
-        # df_akurasi['Akurasi'] = df_akurasi['Akurasi'].apply(lambda x: f'{x*100:.2f}%')
-
-        # Menampilkan judul grafik
-        st.write("""<h6 style="text-align: center;">Grafik Akurasi Model SVM tanpa QER</h6>""", unsafe_allow_html=True)
-
-        st.bar_chart(df_akurasi.set_index('Pembagian Dataset'), height=300)
-
         # Menyusun data ke dalam DataFrame
         data_25 = {'Pembagian Dataset': ['90:10', '80:20', '70:30', '60:40'],
                 'Akurasi': [76, 84, 85, 83]}
@@ -162,6 +148,14 @@ with st.container():
         with col2:
             st.write("""<h6 style = "text-align: center;">Akurasi SVM + QER (Rasio Seleksi Fitur 100%)</h6>""", unsafe_allow_html=True)
             st.bar_chart(df_akurasi_100.set_index('Pembagian Dataset'), height=300)
+
+        tahun = {'Tahun': ['2019', '2020', '2021', '2022', '2023'],
+                'TTahun': [87, 91, 93, 89, 89]}
+
+        df_tahun = pd.DataFrame(tahun)
+        st.write("""<h6 style="text-align: center;">Grafik Total Label Positif dan Negatif Setiap Tahun</h6>""", unsafe_allow_html=True)
+
+        st.bar_chart(df_tahun.set_index('Tahun'), height=300)
 
     elif selected == "Akurasi":
 
