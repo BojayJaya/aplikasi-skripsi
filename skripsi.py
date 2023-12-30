@@ -121,6 +121,12 @@ with st.container():
 
         # Dropdown untuk memilih tahun
         selected_year = st.sidebar.selectbox("Pilih Tahun", sentimen_data['tahun'].unique())
+        selected_year = int(selected_year)  # Ubah ke tipe data integer
+
+        # Pastikan tahun yang dipilih ada dalam dataset
+        if selected_year not in sentimen_data['tahun'].unique():
+            st.error("Tahun yang dipilih tidak valid. Silakan pilih tahun lain.")
+            st.stop()  # Stop eksekusi skrip jika terdapat error
 
         # Membuat filter berdasarkan tahun yang dipilih
         year_data = sentimen_data[sentimen_data['tahun'] == selected_year]
