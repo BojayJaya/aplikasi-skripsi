@@ -129,7 +129,7 @@ with st.container():
             year_data = sentimen_data[sentimen_data['tahun'] == selected_year]
 
             # Menghitung jumlah positif dan negatif setiap bulan
-            monthly_sentiment = year_data.groupby('bulan')['label'].value_counts().unstack().fillna(0)
+            monthly_sentiment = year_data.groupby(['bulan', 'label']).size().unstack(fill_value=0)
 
             # Menampilkan grafik bar chart untuk label positif dan negatif
             st.bar_chart(monthly_sentiment[['Positif', 'Negatif']])
