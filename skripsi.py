@@ -10,7 +10,6 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 import warnings
 
@@ -205,7 +204,7 @@ with st.container():
 
             # Manual pembagian dataset
             total_data = len(ulasan_dataset)
-            train_size = int(total_data * 0.8)
+            train_size = int(total_data * 0.9)
             
             X_train = ulasan_dataset_preprocessed[:train_size]
             y_train = sentimen[:train_size]
@@ -234,11 +233,6 @@ with st.container():
                 st.success('Positif')
             else:
                 st.error('Negatif')
-
-            # Menghitung dan menampilkan akurasi
-            y_test_preds = svm_clf.predict(tf_idf_test)
-            accuracy = accuracy_score(y_test, y_test_preds)
-            st.subheader(f'Akurasi Model: {accuracy:.2%}')
 
     elif selected == "Tentang Kami":
         st.write("#####  Skripsi") 
