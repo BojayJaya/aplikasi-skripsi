@@ -112,12 +112,18 @@ with st.container():
 
     elif selected == "Sentimen":
         st.subheader("Analisis Sentimen")
-        result = ...
-        # Dropdown untuk memilih tahun
-        selected_year = st.sidebar.selectbox("Pilih Tahun", result.index.get_level_values('tahun').unique())
 
-        # Menampilkan grafik untuk tahun yang dipilih
-        year_data = result.loc[selected_year]
+        # Membaca dataset sentimen dari file CSV
+        sentimen_data = pd.read_csv("sentimen.csv")
+
+        # Menampilkan beberapa baris pertama dari dataset untuk debugging
+        st.write("Data Sentimen:", sentimen_data.head())
+
+        # Dropdown untuk memilih tahun
+        selected_year = st.sidebar.selectbox("Pilih Tahun", sentimen_data['tahun'].unique())
+
+        # Membuat filter berdasarkan tahun yang dipilih
+        year_data = sentimen_data[sentimen_data['tahun'] == selected_year]
 
         # Menentukan lebar bar
         bar_width = 0.35
@@ -149,7 +155,7 @@ with st.container():
 
         # Menambahkan ticks label di sumbu x
         ax.set_xticks(index + bar_width / 2)
-        ax.set_xticklabels(year_data.index.get_level_values('nama_bulan'), ha='right')
+        ax.set_xticklabels(year_data['nama_bulan'], ha='right')
 
         # Tampilkan legenda
         ax.legend(title='Label', loc='upper right')
