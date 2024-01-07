@@ -123,21 +123,21 @@ with st.container():
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
         # Membuat plot
-        fig, ax = plt.subplots(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(12, 6))
 
         # Bar chart untuk Positif (hijau)
-        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='center', width=0.4)
+        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
 
-        # Bar chart untuk Negatif (merah)
-        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=0.4)
+        # Bar chart untuk Negatif (merah) diletakkan di sebelah kanan
+        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
 
         # Menambah label total positif di atas batang positif (di kiri)
         for i, value in enumerate(df_bulan['Positif']):
-            ax.text(i, value + 0.1, str(value), ha='center', va='bottom', color='black')
+            ax.text(i - 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
 
         # Menambah label total negatif di atas batang negatif (di kanan)
         for i, value in enumerate(df_bulan['Negatif']):
-            ax.text(i, value + 0.1, str(value), ha='center', va='bottom', color='black')
+            ax.text(i + 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
 
         # Menambah legenda, judul, dan label sumbu
         ax.legend()
