@@ -110,7 +110,7 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Sentimen":
-        # Bulan September, Oktober, November 2023................
+        # Data untuk semua bulan
         bulan_data = {'Bulan': ['September', 'Oktober', 'November'],
                     'Positif': [64, 52, 56],
                     'Negatif': [10, 7, 12]}
@@ -120,36 +120,36 @@ with st.container():
         # Set style
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
-        # Plotting
+        # Membuat plot
         fig, ax = plt.subplots(figsize=(10, 6))
 
-        # Bar chart for Positif (hijau)
+        # Bar chart untuk Positif (hijau)
         ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
 
-        # Add total label positif above positive bars
+        # Menambah label total positif di atas batang positif
         for i, value in enumerate(df_bulan['Positif']):
             ax.text(i, value + 0.1, str(value), ha='center', va='bottom', color='black')
 
-        # Bar chart for Negatif (merah)
+        # Bar chart untuk Negatif (merah)
         ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
 
-        # Add total label negatif above negative bars
+        # Menambah label total negatif di atas batang negatif
         for i, value in enumerate(df_bulan['Negatif']):
             ax.text(i, value + 0.1, str(value), ha='center', va='bottom', color='black')
 
-        # Add legend, title, and axis labels
+        # Menambah legenda, judul, dan label sumbu
         ax.legend()
         ax.set_title('Grafik Total Label Positif dan Negatif pada Bulan September, Oktober, dan November 2023')
         ax.set_xlabel('Bulan')
         ax.set_ylabel('Jumlah')
 
-        # Adjust top margin to prevent cutting off
+        # Menyesuaikan margin atas agar tidak terpotong
         plt.subplots_adjust(top=0.9)
 
-        # Rotate month labels for better visibility
+        # Merotasi label bulan untuk kejelasan yang lebih baik
         plt.xticks(rotation=45, ha='right')
 
-        # Show plot
+        # Menampilkan plot
         st.pyplot(fig)
 
     elif selected == "Akurasi":
