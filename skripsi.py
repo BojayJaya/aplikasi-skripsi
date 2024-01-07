@@ -148,9 +148,6 @@ with st.container():
         # Menyesuaikan margin atas agar tidak terpotong
         plt.subplots_adjust(top=0.9)
 
-        # Merotasi label bulan untuk kejelasan yang lebih baik
-        plt.xticks(rotation=45, ha='right')
-
         # Menampilkan plot
         st.pyplot(fig)
 
