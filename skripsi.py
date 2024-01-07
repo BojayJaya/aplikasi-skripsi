@@ -111,9 +111,11 @@ with st.container():
 
     elif selected == "Sentimen":
         # Data untuk semua bulan
-        bulan_data = {'Bulan': ['September', 'Oktober', 'November'],
-                    'Positif': [64, 52, 56],
-                    'Negatif': [10, 7, 12]}
+        bulan_data = {
+            'Bulan': ['September', 'Oktober', 'November'],
+            'Positif': [64, 52, 56],
+            'Negatif': [10, 7, 12]
+        }
 
         df_bulan = pd.DataFrame(bulan_data)
 
