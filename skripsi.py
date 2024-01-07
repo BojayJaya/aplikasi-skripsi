@@ -110,12 +110,12 @@ with st.container():
         st.write(dt_stlh_p)
 
     elif selected == "Sentimen":
-        # Bulan September 2023................
-        bulan = {'Bulan': ['September'],
-                'Positif': [64],
-                'Negatif': [10]}
+        # Bulan September, Oktober, November 2023................
+        bulan_data = {'Bulan': ['September', 'Oktober', 'November'],
+                    'Positif': [64, 52, 56],
+                    'Negatif': [10, 7, 12]}
 
-        df_bulan = pd.DataFrame(bulan)
+        df_bulan = pd.DataFrame(bulan_data)
 
         # Set style
         st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -123,114 +123,33 @@ with st.container():
         # Plotting
         fig, ax = plt.subplots(figsize=(10, 6))
 
-        # Bar chart untuk Positif (hijau)
+        # Bar chart for Positif (hijau)
         ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
 
-        # Menambah total label positif di atas batang positif
+        # Add total label positif above positive bars
         for i, value in enumerate(df_bulan['Positif']):
-            ax.text(i + 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
+            ax.text(i, value + 0.1, str(value), ha='center', va='bottom', color='black')
 
-        # Bar chart untuk Negatif (merah)
+        # Bar chart for Negatif (merah)
         ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
 
-        # Menambah total label negatif di atas batang negatif
+        # Add total label negatif above negative bars
         for i, value in enumerate(df_bulan['Negatif']):
-            ax.text(i - 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
+            ax.text(i, value + 0.1, str(value), ha='center', va='bottom', color='black')
 
-        # Menambah legenda, judul, dan label sumbu
+        # Add legend, title, and axis labels
         ax.legend()
-        ax.set_title('Grafik Total Label Positif dan Negatif Pada Bulan September 2023')
+        ax.set_title('Grafik Total Label Positif dan Negatif pada Bulan September, Oktober, dan November 2023')
         ax.set_xlabel('Bulan')
         ax.set_ylabel('Jumlah')
 
-        # Menyesuaikan margin atas agar tidak terpotong
+        # Adjust top margin to prevent cutting off
         plt.subplots_adjust(top=0.9)
 
-        # Tampilkan plot
-        st.pyplot(fig)
-
-        # Bulan Oktober 2023................
-        bulan = {'Bulan': ['Oktober'],
-                'Positif': [52],
-                'Negatif': [7]}
-
-        df_bulan = pd.DataFrame(bulan)
-
-        # Set style
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-
-        # Plotting
-        fig, ax = plt.subplots(figsize=(10, 6))
-
-        # Bar chart untuk Positif (hijau)
-        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
-
-        # Menambah total label positif di atas batang positif
-        for i, value in enumerate(df_bulan['Positif']):
-            ax.text(i + 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
-
-        # Bar chart untuk Negatif (merah)
-        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
-
-        # Menambah total label negatif di atas batang negatif
-        for i, value in enumerate(df_bulan['Negatif']):
-            ax.text(i - 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
-
-        # Menambah legenda, judul, dan label sumbu
-        ax.legend()
-        ax.set_title('Grafik Total Label Positif dan Negatif Pada Bulan Oktober 2023')
-        ax.set_xlabel('Bulan')
-        ax.set_ylabel('Jumlah')
-
-        # Menyesuaikan rotasi label bulan
+        # Rotate month labels for better visibility
         plt.xticks(rotation=45, ha='right')
 
-        # Menyesuaikan margin atas agar tidak terpotong
-        plt.subplots_adjust(top=0.9)
-
-        # Tampilkan plot
-        st.pyplot(fig)
-
-        # Bulan November 2023................
-        bulan = {'Bulan': ['November'],
-                'Positif': [56],
-                'Negatif': [12]}
-
-        df_bulan = pd.DataFrame(bulan)
-
-        # Set style
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-
-        # Plotting
-        fig, ax = plt.subplots(figsize=(10, 6))
-
-        # Bar chart untuk Positif (hijau)
-        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
-
-        # Menambah total label positif di atas batang positif
-        for i, value in enumerate(df_bulan['Positif']):
-            ax.text(i + 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
-
-        # Bar chart untuk Negatif (merah)
-        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
-
-        # Menambah total label negatif di atas batang negatif
-        for i, value in enumerate(df_bulan['Negatif']):
-            ax.text(i - 0.2, value + 0.1, str(value), ha='center', va='bottom', color='black')
-
-        # Menambah legenda, judul, dan label sumbu
-        ax.legend()
-        ax.set_title('Grafik Total Label Positif dan Negatif Pada Bulan November 2023')
-        ax.set_xlabel('Bulan')
-        ax.set_ylabel('Jumlah')
-
-        # Menyesuaikan rotasi label bulan
-        plt.xticks(rotation=45, ha='right')
-
-        # Menyesuaikan margin atas agar tidak terpotong
-        plt.subplots_adjust(top=0.9)
-
-        # Tampilkan plot
+        # Show plot
         st.pyplot(fig)
 
     elif selected == "Akurasi":
