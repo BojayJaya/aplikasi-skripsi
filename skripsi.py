@@ -125,11 +125,11 @@ with st.container():
         # Membuat plot
         fig, ax = plt.subplots(figsize=(12, 6))
 
-        # Bar chart untuk Positif (hijau)
-        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=0.4)
+        # Bar chart untuk Positif (hijau) diletakkan di sebelah kiri
+        ax.bar(df_bulan['Bulan'], df_bulan['Positif'], color='green', label='Positif', align='edge', width=-0.4)
 
         # Bar chart untuk Negatif (merah) diletakkan di sebelah kanan
-        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=-0.4)
+        ax.bar(df_bulan['Bulan'], df_bulan['Negatif'], color='red', label='Negatif', align='edge', width=0.4)
 
         # Menambah label total positif di atas batang positif (di kiri)
         for i, value in enumerate(df_bulan['Positif']):
